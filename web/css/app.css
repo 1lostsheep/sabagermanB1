@@ -132,6 +132,8 @@ h2 { font-size: 1.35rem; margin: 0; }
 
 /* word-order blocks */
 .blocks-row { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; min-height: 84px; padding: 12px; border-radius: var(--radius); background: var(--soft); }
+.slot { display: flex; flex-direction: column; align-items: center; min-width: 64px; min-height: 84px;
+        border: 2px dashed var(--line); border-radius: 16px; padding: 2px 4px 6px; }
 .slot-num { font-size: .7rem; color: var(--muted); display: block; }
 .wblock { font: inherit; font-size: 1.3rem; padding: 14px 18px; border-radius: 16px; border: 3px solid transparent; cursor: pointer; background: #e9e4dc; color: #2b2620; min-height: 64px; }
 .wblock.r-verb { background: var(--verb); color: #fff; }
@@ -165,6 +167,7 @@ h2 { font-size: 1.35rem; margin: 0; }
 .role-greeting { background: #2f6fde; } .role-reason { background: #9b4fc4; } .role-point { background: #f28c28; }
 .role-closing { background: #2e9c62; } .role-name { background: #6f655a; }
 .gap { display: inline-block; min-width: 110px; border-bottom: 3px dashed var(--amber); text-align: center; }
+.gap.current { background: var(--amber-bg); border-bottom-width: 4px; }
 .gap.filled { border-bottom-color: var(--good); color: var(--good); font-weight: 700; }
 .letter-en { font-size: .85rem; color: var(--muted); }
 

@@ -7,7 +7,7 @@ import { button, choose, h, hint, nextButton, say, screen, steps } from "../ui.j
 
 const ROLE_LABEL = { greeting: "👋 Hello", reason: "❓ Why", point: "📌 Point", closing: "🙏 Goodbye", name: "✍️ Name" };
 
-function letterView(it, { gaps = [], filled = new Set(), showEn = true } = {}) {
+function letterView(it, { gaps = [], filled = new Set(), showEn = true, current = -1 } = {}) {
   let pointNo = 0;
   return h("div", { class: "paper" }, ...it.lines.map((ln, i) => {
     const label = ln.role === "point" ? `📌 ${++pointNo}` : ROLE_LABEL[ln.role];
@@ -17,7 +17,7 @@ function letterView(it, { gaps = [], filled = new Set(), showEn = true } = {}) {
     if (gap) {
       const at = text.indexOf(gap.word);
       const done = filled.has(i);
-      content = [text.slice(0, at), h("span", { class: "gap" + (done ? " filled" : "") }, done ? gap.word : "  ?  "),
+      content = [text.slice(0, at), h("span", { class: "gap" + (done ? " filled" : i === current ? " current" : "") }, done ? gap.word : "  ?  "),
                  text.slice(at + gap.word.length)];
     }
     return h("div", { class: "letter-line" }, h("span", { class: `role-tag role-${ln.role}` }, label),
@@ -44,7 +44,7 @@ export async function run(root, block) {
   for (let i = 0; i < it.gaps.length; i++) {
     const g = it.gaps[i];
     box = screen(root, steps(i + 1, it.gaps.length), say(S.fillGaps),
-      letterView(it, { gaps: it.gaps, filled, showEn: false }));
+      letterView(it, { gaps: it.gaps, filled, showEn: false, current: g.line }));
     if (await choose(box, g.options, g.options.indexOf(g.word), { columns: Math.min(3, g.options.length) })) score++;
     filled.add(g.line);
   }

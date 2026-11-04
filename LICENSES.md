@@ -14,7 +14,7 @@ The files are used unchanged. Attribution is also shown in the app (Paz page →
 German audio in `content/media/audio/` is generated with **Piper** (https://github.com/OHF-Voice/piper1-gpl,
 GPL-3.0; the generated audio is not covered by the GPL) using these voice models:
 - *Thorsten* (de_DE-thorsten) by Thorsten Müller — CC0 (https://github.com/thorstenMueller/Thorsten-Voice)
-- *Kerstin* (de_DE-kerstin) — CC0 (from the Piper voices collection, https://huggingface.co/rhasspy/piper-voices)
+- *Kerstin* (de_DE-kerstin) — dataset CC0 (https://github.com/rhasspy/dataset-voice-kerstin)
 
 ## Content text
 Words, texts, letters and tasks in `content/` were written for this app with Claude Code. Not taken from
