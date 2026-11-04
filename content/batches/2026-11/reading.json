@@ -1,0 +1,44 @@
+[
+  {
+    "id": "r-2611-elternabend", "topic": "school", "level": "A2", "kind": "letter",
+    "title_de": "Einladung zum Elternabend",
+    "text_de": "Liebe Eltern der Klasse 3b,\nam Dienstag, den 17. November, um 19 Uhr ist Elternabend im Raum 12.\nWir sprechen über:\n– den Ausflug in den Zoo\n– die Hausaufgaben\n– die Weihnachtsfeier\nBitte sagen Sie bis Freitag Bescheid, ob Sie kommen.\nViele Grüße\nAnna Becker",
+    "glossary": [
+      {"de": "die Einladung", "en": "invitation", "hint_am": "ግብዣ"},
+      {"de": "Bescheid sagen", "en": "to tell, to let someone know", "hint_am": "ማሳወቅ"},
+      {"de": "die Weihnachtsfeier", "en": "Christmas party", "hint_am": "የገና በዓል ዝግጅት"}
+    ],
+    "questions": [
+      {"q_de": "Wo ist der Elternabend?", "q_en": "Where is the parents' evening?", "options": ["Im Raum 12", "Im Zoo", "Im Raum 3b"], "answer": 0},
+      {"q_de": "Was sollen die Eltern bis Freitag machen?", "q_en": "What should parents do by Friday?", "options": ["Geld bezahlen", "Sagen, ob sie kommen", "Einen Kuchen backen"], "answer": 1}
+    ]
+  },
+  {
+    "id": "r-2611-aushang", "topic": "school", "level": "A1", "kind": "notice",
+    "title_de": "Wichtige Information",
+    "text_de": "Am Freitag, den 20. November, endet der Unterricht für alle Klassen um 11:30 Uhr.\nDie Lehrer haben eine Konferenz.\nDie Kinder können bis 16 Uhr in die Betreuung (OGS) gehen.\nDie Schulleitung",
+    "glossary": [
+      {"de": "die Betreuung (OGS)", "en": "after-school care", "hint_am": "ከትምህርት በኋላ የልጆች እንክብካቤ"},
+      {"de": "die Konferenz", "en": "meeting (of the teachers)", "hint_am": "ስብሰባ"},
+      {"de": "die Schulleitung", "en": "head of the school", "hint_am": "የትምህርት ቤቱ አስተዳደር"}
+    ],
+    "questions": [
+      {"q_de": "Wann ist am Freitag Schluss?", "q_en": "When do lessons end on Friday?", "options": ["Um 11:30 Uhr", "Um 13 Uhr", "Um 16 Uhr"], "answer": 0},
+      {"q_de": "Warum?", "q_en": "Why?", "options": ["Die Kinder machen einen Ausflug.", "Die Lehrer haben eine Konferenz.", "Es sind Ferien."], "answer": 1}
+    ]
+  },
+  {
+    "id": "r-2611-praxisschild", "topic": "doctor", "level": "A1", "kind": "sign",
+    "title_de": "Praxis Dr. med. Weber – Allgemeinmedizin",
+    "text_de": "Sprechzeiten:\nMo, Di, Do: 8 – 12 Uhr und 15 – 18 Uhr\nMi, Fr: 8 – 12 Uhr\nTermine nur nach Vereinbarung.\nTelefon: 02161 / 55 66 77\nIm Notfall: 116 117",
+    "glossary": [
+      {"de": "die Sprechzeiten", "en": "opening hours (of a doctor)", "hint_am": "የሐኪሙ የሥራ ሰዓት"},
+      {"de": "nach Vereinbarung", "en": "only if you make an appointment", "hint_am": "በቀጠሮ ብቻ"},
+      {"de": "der Notfall", "en": "emergency", "hint_am": "ድንገተኛ አደጋ"}
+    ],
+    "questions": [
+      {"q_de": "Ist die Praxis am Mittwochnachmittag offen?", "q_en": "Is the office open on Wednesday afternoon?", "options": ["Ja", "Nein"], "answer": 1},
+      {"q_de": "Was muss man vorher machen?", "q_en": "What must you do first?", "options": ["Einen Termin machen", "Eine E-Mail schreiben", "Nichts"], "answer": 0}
+    ]
+  }
+]

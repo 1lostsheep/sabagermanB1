@@ -1,0 +1,54 @@
+[
+  {
+    "id": "t-2611-zettel", "topic": "school", "level": "A1", "kind": "read_note",
+    "prompt_en": "Abel brings a note from school. Read it.", "prompt_hint_am": "አቤል ከትምህርት ቤት ማስታወሻ አመጣ። አንብቢው።",
+    "material_title": "Zettel von der Schule",
+    "material_de": "Liebe Eltern,\nam Montag machen wir Fotos.\nBitte ziehen Sie Ihrem Kind schöne Kleidung an.\nEin Foto kostet 8 Euro.",
+    "questions": [
+      {"q_de": "Was passiert am Montag?", "q_en": "What happens on Monday?", "options": ["Die Kinder machen Sport.", "Ein Fotograf macht Fotos.", "Es gibt keine Schule."], "answer": 1},
+      {"q_de": "Was kostet ein Foto?", "q_en": "How much is one photo?", "options": ["8 Euro", "18 Euro", "80 Euro"], "answer": 0}
+    ]
+  },
+  {
+    "id": "t-2611-ausflugzettel", "topic": "school", "level": "A2", "kind": "fill_form",
+    "prompt_en": "Fill in the form for the school trip.", "prompt_hint_am": "ለትምህርት ቤቱ ሽርሽር ቅጹን ሙዪ።",
+    "material_title": "Ihre Informationen",
+    "material_de": "Ihr Sohn heißt Abel Tesfaye.\nEr ist in der Klasse 3b.\nIhre Handynummer ist 0176 123 4567.",
+    "fields": [
+      {"label_de": "Vorname des Kindes", "label_en": "Child's first name", "answer": ["Abel"]},
+      {"label_de": "Nachname", "label_en": "Family name", "answer": ["Tesfaye"]},
+      {"label_de": "Klasse", "label_en": "Class", "answer": ["3b", "3 b", "3B"]},
+      {"label_de": "Telefon", "label_en": "Phone", "answer": ["0176 123 4567", "01761234567", "0176 1234567", "0176-123 4567"]}
+    ]
+  },
+  {
+    "id": "t-2611-whatsapp", "topic": "school", "level": "A2", "kind": "choose_reply",
+    "prompt_en": "Another mother sends you a message. Choose the best answer.", "prompt_hint_am": "ሌላ እናት መልእክት ላከችልሽ። ምርጡን መልስ ምረጪ።",
+    "material_title": "Nachricht von Maria",
+    "material_de": "Hallo Saba! Ich muss morgen lange arbeiten. Kannst du Tim um 13 Uhr von der Schule abholen? Das wäre super! Maria",
+    "questions": [
+      {"q_de": "Was antworten Sie?", "q_en": "What do you answer?",
+       "options": ["Ja, kein Problem. Ich hole Tim um 13 Uhr ab.", "Ich habe Kopfschmerzen.", "Der Elternabend ist am Dienstag."], "answer": 0}
+    ]
+  },
+  {
+    "id": "t-2611-stundenplan", "topic": "school", "level": "A1", "kind": "read_note",
+    "prompt_en": "Look at Lena's timetable.", "prompt_hint_am": "የሌናን የትምህርት ፕሮግራም ተመልከቺ።",
+    "material_title": "Stundenplan Klasse 2a – Dienstag",
+    "material_de": "8:00  Deutsch\n8:45  Mathe\n9:30  Pause\n10:00 Sport\n10:45 Musik\n11:30 Schluss",
+    "questions": [
+      {"q_de": "Was hat Lena um 10 Uhr?", "q_en": "What does Lena have at 10 o'clock?", "options": ["Mathe", "Sport", "Musik"], "answer": 1},
+      {"q_de": "Wann ist am Dienstag Schluss?", "q_en": "When does school end on Tuesday?", "options": ["Um 9:30 Uhr", "Um 11:30 Uhr", "Um 13 Uhr"], "answer": 1}
+    ]
+  },
+  {
+    "id": "t-2611-praxis-sms", "topic": "doctor", "level": "A2", "kind": "choose_reply",
+    "prompt_en": "The doctor's office sends you an SMS. Choose the best answer.", "prompt_hint_am": "የሐኪሙ ቢሮ መልእክት ላከልሽ። ምርጡን መልስ ምረጪ።",
+    "material_title": "SMS von Praxis Dr. Weber",
+    "material_de": "Erinnerung: Ihr Termin ist morgen, Freitag, um 9:30 Uhr. Können Sie kommen? Bitte antworten Sie mit JA oder NEIN.",
+    "questions": [
+      {"q_de": "Sie können kommen. Was schreiben Sie?", "q_en": "You can come. What do you write?",
+       "options": ["NEIN", "JA", "Bitte rufen Sie an."], "answer": 1}
+    ]
+  }
+]

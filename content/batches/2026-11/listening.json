@@ -1,0 +1,53 @@
+[
+  {
+    "id": "l-2611-elternabend", "topic": "school", "level": "A2", "kind": "phone_message",
+    "title_en": "A message from the teacher",
+    "lines": [{"speaker": "f", "de": "Guten Tag, Frau Tesfaye, hier ist Frau Becker, die Lehrerin von Abel. Am Dienstag ist um sieben Uhr Elternabend. Wir sprechen über den Ausflug in den Zoo. Bitte kommen Sie, wenn Sie Zeit haben. Danke und auf Wiederhören."}],
+    "questions": [
+      {"q_de": "Wann ist der Elternabend?", "q_en": "When is the parents' evening?", "options": ["Am Dienstag um 7 Uhr", "Am Donnerstag um 7 Uhr", "Am Dienstag um 11 Uhr"], "answer": 0},
+      {"q_de": "Worüber sprechen die Eltern?", "q_en": "What do the parents talk about?", "options": ["Über die Hausaufgaben", "Über den Ausflug", "Über die Ferien"], "answer": 1}
+    ]
+  },
+  {
+    "id": "l-2611-ausflug", "topic": "school", "level": "A1", "kind": "conversation",
+    "title_en": "A mother talks to the teacher",
+    "lines": [
+      {"speaker": "f", "de": "Frau Becker, was braucht Abel für den Ausflug?"},
+      {"speaker": "m", "de": "Er braucht fünf Euro für den Eintritt und etwas zu essen. Und bitte eine Jacke. Es ist kalt."},
+      {"speaker": "f", "de": "Und wann kommen die Kinder zurück?"},
+      {"speaker": "m", "de": "Um zwei Uhr sind wir wieder an der Schule."}
+    ],
+    "questions": [
+      {"q_de": "Wie viel Geld braucht Abel?", "q_en": "How much money does Abel need?", "options": ["2 Euro", "5 Euro", "15 Euro"], "answer": 1},
+      {"q_de": "Was soll Abel mitbringen?", "q_en": "What should Abel bring?", "options": ["Eine Jacke", "Ein Heft", "Einen Stift"], "answer": 0},
+      {"q_de": "Wann sind die Kinder zurück?", "q_en": "When are the children back?", "options": ["Um 12 Uhr", "Um 2 Uhr", "Um 4 Uhr"], "answer": 1}
+    ]
+  },
+  {
+    "id": "l-2611-sekretariat", "topic": "school", "level": "A2", "kind": "phone_message",
+    "title_en": "A call from the school office",
+    "lines": [{"speaker": "f", "de": "Hallo Frau Tesfaye, hier ist das Sekretariat der Grundschule am Park. Ihre Tochter Lena ist krank. Sie hat Bauchschmerzen. Bitte holen Sie Lena so schnell wie möglich ab. Sie wartet im Sekretariat. Vielen Dank."}],
+    "questions": [
+      {"q_de": "Was hat Lena?", "q_en": "What is wrong with Lena?", "options": ["Kopfschmerzen", "Bauchschmerzen", "Fieber"], "answer": 1},
+      {"q_de": "Was soll Frau Tesfaye machen?", "q_en": "What should Mrs Tesfaye do?", "options": ["Lena abholen", "Die Lehrerin anrufen", "Zum Arzt gehen"], "answer": 0}
+    ]
+  },
+  {
+    "id": "l-2611-ferien", "topic": "school", "level": "A2", "kind": "radio",
+    "title_en": "News on the radio",
+    "lines": [{"speaker": "m", "de": "Und hier noch eine Information für alle Familien in Nordrhein-Westfalen: Am Montag beginnen die Weihnachtsferien. Die Schulen sind zwei Wochen geschlossen. Der Unterricht beginnt wieder am siebten Januar."}],
+    "questions": [
+      {"q_de": "Wann beginnen die Ferien?", "q_en": "When do the holidays start?", "options": ["Am Montag", "Am Freitag", "Am 7. Januar"], "answer": 0},
+      {"q_de": "Wie lange sind die Schulen geschlossen?", "q_en": "How long are the schools closed?", "options": ["Eine Woche", "Zwei Wochen", "Drei Wochen"], "answer": 1}
+    ]
+  },
+  {
+    "id": "l-2611-praxis", "topic": "doctor", "level": "A2", "kind": "phone_message",
+    "title_en": "A message from the doctor's office",
+    "lines": [{"speaker": "f", "de": "Guten Tag, hier ist die Praxis Doktor Weber. Ihr Termin am Donnerstag geht leider nicht. Der Doktor ist krank. Können Sie am Freitag um halb zehn kommen? Bitte rufen Sie uns zurück. Und bringen Sie bitte Ihre Versichertenkarte mit."}],
+    "questions": [
+      {"q_de": "Wann ist der neue Termin?", "q_en": "When is the new appointment?", "options": ["Donnerstag, 9:30 Uhr", "Freitag, 9:30 Uhr", "Freitag, 10:30 Uhr"], "answer": 1},
+      {"q_de": "Was soll man mitbringen?", "q_en": "What must you bring?", "options": ["Die Versichertenkarte", "Ein Rezept", "Einen Brief"], "answer": 0}
+    ]
+  }
+]
