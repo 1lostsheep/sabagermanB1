@@ -1,0 +1,151 @@
+{
+  "id": "placement-v1",
+  "schema_version": 1,
+  "minutes": 45,
+  "sections": [
+    {
+      "id": "words",
+      "area": "vocabulary",
+      "items": [
+        {"id": "p-w01", "level": "A1", "de": "der Apfel", "options": ["1F34E", "1F34C", "1F35E", "1F95B"], "answer": 0},
+        {"id": "p-w02", "level": "A1", "de": "das Brot", "options": ["1F9C0", "1F35E", "1F34E", "1F95A"], "answer": 1},
+        {"id": "p-w03", "level": "A1", "de": "die Milch", "options": ["2615", "1F37A", "1F95B", "1F9C3"], "answer": 2},
+        {"id": "p-w04", "level": "A1", "de": "das Haus", "options": ["1F3EB", "1F3E5", "1F3EA", "1F3E0"], "answer": 3},
+        {"id": "p-w05", "level": "A1", "de": "der Bus", "options": ["1F68C", "1F697", "1F6B2", "1F686"], "answer": 0},
+        {"id": "p-w06", "level": "A1", "de": "die Uhr", "options": ["1F4F1", "23F0", "1F511", "1F4D6"], "answer": 1},
+        {"id": "p-w07", "level": "A1", "de": "der Schlüssel", "options": ["1F4F1", "1F45B", "1F511", "2709"], "answer": 2},
+        {"id": "p-w08", "level": "A1", "de": "das Kind", "options": ["1F474", "1F469", "1F468", "1F9D2"], "answer": 3},
+        {"id": "p-w09", "level": "A2", "de": "die Tablette", "options": ["1F48A", "1F321", "1FA79", "1F489"], "answer": 0},
+        {"id": "p-w10", "level": "A2", "de": "das Fieber", "options": ["1F927", "1F912", "1F634", "1F600"], "answer": 1},
+        {"id": "p-w11", "level": "A2", "de": "der Regenschirm", "options": ["2600", "2744", "2602", "1F9E3"], "answer": 2},
+        {"id": "p-w12", "level": "A2", "de": "die Rechnung", "options": ["1F4C5", "1F4E6", "2709", "1F9FE"], "answer": 3},
+        {"id": "p-w13", "level": "A2", "de": "der Briefkasten", "options": ["1F4EB", "1F5D1", "1F6AA", "1FA9F"], "answer": 0},
+        {"id": "p-w14", "level": "A2", "de": "die Mülltonne", "options": ["1F4EB", "1F5D1", "1FAB4", "1F6BF"], "answer": 1},
+        {"id": "p-w15", "level": "A2", "de": "der Zahn", "options": ["1F441", "1F442", "1F9B7", "1F9B5"], "answer": 2},
+        {"id": "p-w16", "level": "A2", "de": "das Paket", "options": ["2709", "1F9FE", "1F381", "1F4E6"], "answer": 3},
+        {"id": "p-w17", "level": "B1", "de": "die Baustelle", "options": ["1F6A7", "1F6A6", "1F68F", "1F3E2"], "answer": 0},
+        {"id": "p-w18", "level": "B1", "de": "der Feuerlöscher", "options": ["1F9F0", "1F9EF", "1F9F2", "1FA9B"], "answer": 1},
+        {"id": "p-w19", "level": "B1", "de": "der Stecker", "options": ["1F4A1", "1F50B", "1F50C", "1F526"], "answer": 2},
+        {"id": "p-w20", "level": "B1", "de": "das Gewitter", "options": ["2600", "1F308", "1F32B", "26C8"], "answer": 3}
+      ]
+    },
+    {
+      "id": "listening",
+      "area": "listening",
+      "items": [
+        {
+          "id": "p-l01", "level": "A1", "kind": "announcement",
+          "lines": [{"speaker": "f", "de": "Der Bus Nummer 7 fährt heute nicht. Bitte nehmen Sie den Bus Nummer 9."}],
+          "questions": [{"q_de": "Welchen Bus nehmen Sie heute?", "q_en": "Which bus do you take today?",
+                         "options": ["Bus 7", "Bus 9", "Bus 17"], "answer": 1}]
+        },
+        {
+          "id": "p-l02", "level": "A1", "kind": "conversation",
+          "lines": [{"speaker": "m", "de": "Was kostet das Brot?"},
+                    {"speaker": "f", "de": "Das Brot kostet zwei Euro fünfzig."}],
+          "questions": [{"q_de": "Was kostet das Brot?", "q_en": "How much is the bread?",
+                         "options": ["2,15 €", "2,50 €", "5,20 €"], "answer": 1}]
+        },
+        {
+          "id": "p-l03", "level": "A2", "kind": "phone_message",
+          "lines": [{"speaker": "f", "de": "Guten Tag, hier ist die Praxis Doktor Weber. Ihr Termin am Montag geht leider nicht. Können Sie am Mittwoch um zehn Uhr kommen? Bitte rufen Sie uns zurück."}],
+          "questions": [{"q_de": "Wann ist der neue Termin?", "q_en": "When is the new appointment?",
+                         "options": ["Montag, 10 Uhr", "Mittwoch, 10 Uhr", "Mittwoch, 12 Uhr"], "answer": 1}]
+        },
+        {
+          "id": "p-l04", "level": "A2", "kind": "phone_message",
+          "lines": [{"speaker": "m", "de": "Hallo, hier ist Herr Yilmaz, Ihr Nachbar. Ich habe ein Paket für Sie. Der Postbote war heute Morgen da. Sie können das Paket heute Abend ab sieben Uhr abholen."}],
+          "questions": [{"q_de": "Was soll die Frau machen?", "q_en": "What should the woman do?",
+                         "options": ["Ein Paket abholen", "Den Postboten anrufen", "Zur Post gehen"], "answer": 0}]
+        },
+        {
+          "id": "p-l05", "level": "B1", "kind": "radio",
+          "lines": [{"speaker": "m", "de": "Und nun der Verkehr. Auf der A 61 zwischen Mönchengladbach und Venlo gibt es nach einem Unfall drei Kilometer Stau. Fahren Sie bitte über die A 52. In der Innenstadt ist die Hindenburgstraße wegen einer Baustelle bis Freitag gesperrt."}],
+          "questions": [{"q_de": "Warum ist die Hindenburgstraße gesperrt?", "q_en": "Why is the Hindenburgstraße closed?",
+                         "options": ["Wegen eines Unfalls", "Wegen einer Baustelle", "Wegen eines Festes"], "answer": 1}]
+        },
+        {
+          "id": "p-l06", "level": "B1", "kind": "conversation",
+          "lines": [{"speaker": "f", "de": "Sag mal, wollen wir am Samstag zusammen in den Park gehen? Die Kinder können dort spielen."},
+                    {"speaker": "m", "de": "Am Samstag arbeite ich leider bis drei. Aber danach habe ich Zeit. Wie wäre es um vier?"},
+                    {"speaker": "f", "de": "Um vier ist gut. Ich bringe Kuchen mit."}],
+          "questions": [{"q_de": "Wann treffen sie sich?", "q_en": "When do they meet?",
+                         "options": ["Samstag um 3 Uhr", "Samstag um 4 Uhr", "Sonntag um 4 Uhr"], "answer": 1}]
+        }
+      ]
+    },
+    {
+      "id": "reading",
+      "area": "reading",
+      "items": [
+        {
+          "id": "p-r01", "level": "A1", "kind": "sign",
+          "title_de": "Bäckerei Schmitz",
+          "text_de": "Öffnungszeiten\nMontag bis Freitag: 7 – 18 Uhr\nSamstag: 7 – 13 Uhr\nSonntag: geschlossen",
+          "questions": [{"q_de": "Wann ist die Bäckerei am Samstag offen?", "q_en": "When is the bakery open on Saturday?",
+                         "options": ["7 – 13 Uhr", "7 – 18 Uhr", "Gar nicht"], "answer": 0}]
+        },
+        {
+          "id": "p-r02", "level": "A1", "kind": "message",
+          "title_de": "SMS von Lena",
+          "text_de": "Hallo Saba! Ich bin krank und kann heute nicht zum Kurs kommen. Kannst du mir die Hausaufgaben schicken? Danke! Lena",
+          "questions": [{"q_de": "Was möchte Lena?", "q_en": "What does Lena want?",
+                         "options": ["Sie möchte zum Arzt gehen.", "Sie möchte die Hausaufgaben.", "Sie möchte Saba besuchen."], "answer": 1}]
+        },
+        {
+          "id": "p-r03", "level": "A2", "kind": "notice",
+          "title_de": "Information für alle Mieter",
+          "text_de": "Liebe Mieterinnen und Mieter,\nam Dienstag, den 14. Mai, gibt es von 8 bis 12 Uhr kein Wasser. Ein Techniker repariert die Leitungen im Keller.\nVielen Dank für Ihr Verständnis!\nIhre Hausverwaltung",
+          "questions": [{"q_de": "Was passiert am Dienstag?", "q_en": "What happens on Tuesday?",
+                         "options": ["Es gibt kein Wasser.", "Der Keller ist geschlossen.", "Die Miete wird teurer."], "answer": 0}]
+        },
+        {
+          "id": "p-r04", "level": "A2", "kind": "letter",
+          "title_de": "Brief von der Schule",
+          "text_de": "Liebe Eltern,\nam Freitag machen wir einen Ausflug in den Zoo. Wir fahren um 8:30 Uhr mit dem Bus ab der Schule. Bitte geben Sie Ihrem Kind 5 Euro für den Eintritt und etwas zu essen mit. Wir sind um 14 Uhr zurück.\nViele Grüße\nFrau Becker, Klasse 3b",
+          "questions": [{"q_de": "Was muss das Kind mitbringen?", "q_en": "What must the child bring?",
+                         "options": ["Ein Busticket", "5 Euro und Essen", "Einen Brief von den Eltern"], "answer": 1}]
+        },
+        {
+          "id": "p-r05", "level": "B1", "kind": "letter",
+          "title_de": "Brief vom Jobcenter",
+          "text_de": "Sehr geehrte Frau Tesfaye,\nbitte kommen Sie am 3. Dezember um 9:15 Uhr zu einem Gespräch in Zimmer 214. Wir möchten mit Ihnen über Ihre berufliche Situation sprechen. Bringen Sie bitte Ihren Lebenslauf mit. Wenn Sie den Termin nicht wahrnehmen können, melden Sie sich bitte vorher telefonisch. Ohne wichtigen Grund kann Ihre Leistung gekürzt werden.\nMit freundlichen Grüßen\nIhr Jobcenter",
+          "questions": [{"q_de": "Was muss Frau Tesfaye machen, wenn sie nicht kommen kann?", "q_en": "What must Mrs Tesfaye do if she cannot come?",
+                         "options": ["Einen Lebenslauf schicken", "Vorher anrufen", "Später einfach kommen"], "answer": 1}]
+        },
+        {
+          "id": "p-r06", "level": "B1", "kind": "ad",
+          "title_de": "Kleinanzeige",
+          "text_de": "Wir suchen ab sofort eine freundliche Reinigungskraft für unser Büro in Rheydt. Arbeitszeit: Montag bis Freitag, 17 bis 20 Uhr. Deutschkenntnisse auf Niveau A2 sind ausreichend. Erfahrung ist nicht nötig, wir arbeiten Sie ein. Interesse? Rufen Sie Frau Peters an: 02166 / 47 11 23.",
+          "questions": [{"q_de": "Was ist richtig?", "q_en": "What is true?",
+                         "options": ["Man muss schon Erfahrung haben.", "Die Arbeit ist am Abend.", "Man braucht Deutsch auf B2."], "answer": 1}]
+        }
+      ]
+    },
+    {
+      "id": "speaking",
+      "area": "speaking",
+      "prompt_de": "Erzählen Sie bitte etwas über sich.",
+      "can_do": [
+        {"id": "p-s01", "level": "A2", "en": "I can say my name, where I come from, and where I live.", "hint_am": "ስሜን፣ ከየት እንደመጣሁ እና የት እንደምኖር መናገር እችላለሁ።",
+         "example_de": "Ich heiße Saba. Ich komme aus Äthiopien. Ich wohne in Mönchengladbach."},
+        {"id": "p-s02", "level": "A2", "en": "I can talk about my family.", "hint_am": "ስለ ቤተሰቤ መናገር እችላለሁ።",
+         "example_de": "Ich bin verheiratet. Ich habe zwei Kinder."},
+        {"id": "p-s03", "level": "A2", "en": "I can say what I do every day.", "hint_am": "በየቀኑ የማደርገውን መናገር እችላለሁ።",
+         "example_de": "Am Morgen bringe ich die Kinder zur Schule. Dann gehe ich einkaufen."},
+        {"id": "p-s04", "level": "B1", "en": "I can talk about a picture and about my own life.", "hint_am": "ስለ አንድ ስዕል እና ስለ ራሴ ሕይወት መናገር እችላለሁ።",
+         "example_de": "Auf dem Bild sehe ich eine Familie beim Einkaufen. Ich gehe auch oft mit meinen Kindern einkaufen."},
+        {"id": "p-s05", "level": "B1", "en": "I can plan something with another person, like a party.", "hint_am": "ከሌላ ሰው ጋር አንድ ነገር ማቀድ እችላለሁ፣ ለምሳሌ ድግስ።",
+         "example_de": "Wollen wir am Samstag feiern? Ich kann einen Kuchen backen. Was bringst du mit?"}
+      ]
+    },
+    {
+      "id": "writing",
+      "area": "writing",
+      "task_en": "Your daughter is sick today. Write a short note to her teacher, Mrs Becker. Write 3 sentences.",
+      "task_de": "Ihre Tochter ist heute krank. Schreiben Sie eine kurze Nachricht an die Lehrerin, Frau Becker.",
+      "hint_am": "ልጅሽ ዛሬ ታማለች። ለአስተማሪዋ ለወይዘሮ ቤከር አጭር ማስታወሻ ጻፊ። 3 ዓረፍተ ነገሮችን ጻፊ።",
+      "keywords": ["krank", "Tochter", "Schule", "kommen", "morgen", "Fieber", "Arzt", "heute"]
+    }
+  ]
+}

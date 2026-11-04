@@ -11,6 +11,7 @@ Safe to re-run: only missing files are created.
 Needs: pip install -r requirements-content.txt, and ffmpeg.
 """
 import argparse
+import logging
 import shutil
 import subprocess
 import sys
@@ -98,9 +99,10 @@ class Speaker:
             inputs, filters = [], []
             for n, p in enumerate(parts):
                 inputs += ["-i", str(p)]
-                filters.append(f"[{n}:a]aresample=24000,aformat=channel_layouts=mono,apad=pad_dur={LINE_PAUSE_S}[a{n}]")
+                pad = f",apad=pad_dur={LINE_PAUSE_S}" if n < len(parts) - 1 else ""
+                filters.append(f"[{n}:a]aresample=24000,aformat=channel_layouts=mono{pad}[a{n}]")
             concat = "".join(f"[a{n}]" for n in range(len(parts)))
-            graph = ";".join(filters) + f";{concat}concat=n={len(parts)}:v=0:a=1,areverse,silenceremove=start_periods=1:start_threshold=-50dB,areverse[out]"
+            graph = ";".join(filters) + f";{concat}concat=n={len(parts)}:v=0:a=1[out]"
             subprocess.run(["ffmpeg", "-loglevel", "error", "-y", *inputs, "-filter_complex", graph,
                             "-map", "[out]", "-c:a", "libopus", "-b:a", "32k", str(out)], check=True)
 
@@ -146,8 +148,9 @@ def report(name, errors) -> bool:
 
 
 def main():
+    logging.getLogger("piper").setLevel(logging.ERROR)
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("batch", nargs="?", help="batch id like 2026-11, or 'all'")
+    ap.add_argument("batch", nargs="?", help="batch id like 2026-11, 'all', or 'placement'")
     ap.add_argument("--check", action="store_true", help="validate only (also checks media exists)")
     ap.add_argument("--force", action="store_true", help="re-render audio and re-fetch pictures")
     ap.add_argument("--voices-only", action="store_true")
@@ -161,7 +164,7 @@ def main():
     if not args.batch:
         ap.error("give a batch id (e.g. 2026-11) or 'all'")
 
-    ids = C.batch_ids() if args.batch == "all" else [args.batch]
+    ids = {"all": C.batch_ids(), "placement": []}.get(args.batch, [args.batch])
     ok = True
     for bid in ids:
         if not (C.BATCHES / bid / "batch.json").exists():
