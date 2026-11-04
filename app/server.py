@@ -278,6 +278,18 @@ def create_app(db_path=None, content_root=None):
         q = srs.review_queue(all_cards(), today())
         return jsonify(cards=with_distractors([c.word_id for c in q]))
 
+    @app.get("/api/practice")
+    def practice():
+        """Extra practice (not scheduled): due cards first, else a random mix of met words."""
+        cards = all_cards()
+        due = srs.review_queue(cards, today(), limit=10)
+        ids = [c.word_id for c in due]
+        if len(ids) < 10:
+            rest = [c.word_id for c in cards if c.word_id not in ids]
+            random.shuffle(rest)
+            ids += rest[: 10 - len(ids)]
+        return jsonify(cards=with_distractors(ids))
+
     @app.post("/api/review")
     def review_answer():
         d = body()
@@ -315,7 +327,7 @@ def create_app(db_path=None, content_root=None):
         t = today()
         week = conn().execute("SELECT COALESCE(SUM(seconds),0) s FROM lesson_day WHERE day > ?",
                               ((t - timedelta(days=7)).isoformat(),)).fetchone()["s"]
-        return jsonify(minutes_week=round(week / 60), **n)
+        return jsonify(minutes_week=round(week / 60), today=t.isoformat(), **n)
 
     # ---------------- placement ----------------
 

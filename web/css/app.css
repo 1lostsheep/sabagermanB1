@@ -151,6 +151,7 @@ h2 { font-size: 1.35rem; margin: 0; }
 .stat .num { font-size: 2.4rem; font-weight: 800; }
 .stat .lbl { color: var(--muted); }
 .sit-done { opacity: .6; }
+.btn.primary .muted { color: rgba(255, 255, 255, .85); }
 
 /* reading */
 .paper { background: #fffdf7; color: #2b2620; border: 2px solid var(--line); border-radius: 12px; padding: 20px 24px; font-size: 1.2rem; white-space: pre-wrap; box-shadow: var(--shadow); -webkit-user-select: text; user-select: text; }
@@ -173,7 +174,7 @@ textarea { min-height: 180px; }
 .field label { font-size: 1.1rem; }
 
 /* calendar */
-.cal { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
+.cal { max-width: 520px; width: 100%; margin: 0 auto; display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
 .cal .d { aspect-ratio: 1; border-radius: 12px; background: var(--soft); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
 .cal .d.on { background: var(--good-bg); }
 .cal .d.today { outline: 3px solid var(--primary); }
