@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=German Coach
+Comment=Saba's German B1 Coach
+Exec=@APP_DIR@/launcher/launch.sh
+Icon=@APP_DIR@/launcher/icon.svg
+Terminal=false
+Categories=Education;
+StartupNotify=false

@@ -1,0 +1,11 @@
+[Unit]
+Description=Saba's German B1 Coach (local server)
+
+[Service]
+WorkingDirectory=@APP_DIR@
+ExecStart=@APP_DIR@/.venv/bin/python -m app.server
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=default.target
