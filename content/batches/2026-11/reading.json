@@ -2,23 +2,23 @@
   {
     "id": "r-2611-elternabend", "topic": "school", "level": "A2", "kind": "letter",
     "title_de": "Einladung zum Elternabend",
-    "text_de": "Liebe Eltern der Klasse 3b,\nam Dienstag, den 17. November, um 19 Uhr ist Elternabend im Raum 12.\nWir sprechen über:\n– den Ausflug in den Zoo\n– die Hausaufgaben\n– die Weihnachtsfeier\nBitte sagen Sie bis Freitag Bescheid, ob Sie kommen.\nViele Grüße\nAnna Becker",
+    "text_de": "Liebe Eltern der Klasse 8,\nam Dienstag, den 17. November, um 19 Uhr ist Elternabend im Raum 12.\nWir sprechen über:\n– den Ausflug ins Museum\n– die Hausaufgaben\n– die Weihnachtsfeier\nBitte sagen Sie bis Freitag Bescheid, ob Sie kommen.\nViele Grüße\nAnna Becker",
     "glossary": [
       {"de": "die Einladung", "en": "invitation", "hint_am": "ግብዣ"},
       {"de": "Bescheid sagen", "en": "to tell, to let someone know", "hint_am": "ማሳወቅ"},
       {"de": "die Weihnachtsfeier", "en": "Christmas party", "hint_am": "የገና በዓል ዝግጅት"}
     ],
     "questions": [
-      {"q_de": "Wo ist der Elternabend?", "q_en": "Where is the parents' evening?", "options": ["Im Raum 12", "Im Zoo", "Im Raum 3b"], "answer": 0},
+      {"q_de": "Wo ist der Elternabend?", "q_en": "Where is the parents' evening?", "options": ["Im Raum 12", "Im Museum", "Im Raum 8"], "answer": 0},
       {"q_de": "Was sollen die Eltern bis Freitag machen?", "q_en": "What should parents do by Friday?", "options": ["Geld bezahlen", "Sagen, ob sie kommen", "Einen Kuchen backen"], "answer": 1}
     ]
   },
   {
     "id": "r-2611-aushang", "topic": "school", "level": "A1", "kind": "notice",
     "title_de": "Wichtige Information",
-    "text_de": "Am Freitag, den 20. November, endet der Unterricht für alle Klassen um 11:30 Uhr.\nDie Lehrer haben eine Konferenz.\nDie Kinder können bis 16 Uhr in die Betreuung (OGS) gehen.\nDie Schulleitung",
+    "text_de": "Am Freitag, den 20. November, endet der Unterricht für alle Klassen um 11:30 Uhr.\nDie Lehrer haben eine Konferenz.\nDie Schülerinnen und Schüler können bis 14 Uhr in der Bibliothek lernen.\nDie Schulleitung",
     "glossary": [
-      {"de": "die Betreuung (OGS)", "en": "after-school care", "hint_am": "ከትምህርት በኋላ የልጆች እንክብካቤ"},
+      {"de": "die Bibliothek", "en": "library", "hint_am": "ቤተ መጻሕፍት"},
       {"de": "die Konferenz", "en": "meeting (of the teachers)", "hint_am": "ስብሰባ"},
       {"de": "die Schulleitung", "en": "head of the school", "hint_am": "የትምህርት ቤቱ አስተዳደር"}
     ],

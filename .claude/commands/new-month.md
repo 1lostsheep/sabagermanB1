@@ -49,7 +49,7 @@ You are preparing a new monthly content batch for Saba's German B1 Coach. Argume
   - an OpenMoji hexcode for its picture. Check that the emoji really shows the word; prefer a concrete object;
   - an example sentence whose `blocks` have the action word in slot 2.
 - Numbers, times and abbreviations go in `say`, written out the way they are spoken.
-- Use the family's real names. Ask Paz if you don't know them.
+- Use the family names listed in CLAUDE.md (Saba, Phillip in Klasse 12, Amariam in Klasse 8).
 
 ## 4. Build and check
 ```bash

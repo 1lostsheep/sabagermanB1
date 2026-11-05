@@ -1,24 +1,24 @@
 [
   {
     "id": "b-2611-krank", "topic": "school", "level": "A2",
-    "task_en": "Your son Abel is sick. Write to his teacher, Mrs Becker.",
-    "task_de": "Ihr Sohn Abel ist krank. Schreiben Sie an seine Lehrerin, Frau Becker.",
-    "task_hint_am": "ልጅሽ አቤል ታሟል። ለመምህርቱ ለወይዘሮ ቤከር ጻፊ።",
+    "task_en": "Your daughter Amariam is sick. Write to her teacher, Mrs Becker.",
+    "task_de": "Ihre Tochter Amariam ist krank. Schreiben Sie an ihre Lehrerin, Frau Becker.",
+    "task_hint_am": "ልጅሽ አማሪያም ታማለች። ለመምህርቷ ለወይዘሮ ቤከር ጻፊ።",
     "points": [{"de": "Was hat er?", "en": "What is wrong?"}, {"de": "Wie lange?", "en": "How long?"},
                {"de": "Hausaufgaben", "en": "Homework"}, {"de": "Arzt", "en": "Doctor"}],
     "lines": [
       {"role": "greeting", "de": "Liebe Frau Becker,", "en": "Dear Mrs Becker,"},
-      {"role": "reason", "de": "mein Sohn Abel ist heute krank.", "en": "my son Abel is sick today."},
-      {"role": "point", "de": "Er hat Fieber und Kopfschmerzen.", "en": "He has a fever and a headache."},
-      {"role": "point", "de": "Er bleibt bis Mittwoch zu Hause.", "en": "He stays at home until Wednesday."},
+      {"role": "reason", "de": "meine Tochter Amariam ist heute krank.", "en": "my daughter Amariam is sick today."},
+      {"role": "point", "de": "Sie hat Fieber und Kopfschmerzen.", "en": "She has a fever and a headache."},
+      {"role": "point", "de": "Sie bleibt bis Mittwoch zu Hause.", "en": "She stays at home until Wednesday."},
       {"role": "point", "de": "Können Sie mir bitte die Hausaufgaben schicken?", "en": "Can you please send me the homework?"},
       {"role": "point", "de": "Morgen gehen wir zum Arzt.", "en": "Tomorrow we go to the doctor."},
       {"role": "closing", "de": "Viele Grüße", "en": "Best wishes"},
-      {"role": "name", "de": "Saba Tesfaye", "en": "Saba Tesfaye"}
+      {"role": "name", "de": "Saba Schmitz", "en": "Saba Schmitz"}
     ],
     "gaps": [
       {"line": 1, "word": "krank", "options": ["krank", "froh", "müde"]},
-      {"line": 3, "word": "zu Hause", "options": ["zu Hause", "im Zoo", "in der Schule"]},
+      {"line": 3, "word": "zu Hause", "options": ["zu Hause", "im Museum", "in der Schule"]},
       {"line": 5, "word": "Arzt", "options": ["Bäcker", "Arzt", "Elternabend"]},
       {"line": 6, "word": "Grüße", "options": ["Grüße", "Termine", "Hefte"]}
     ]
@@ -38,7 +38,7 @@
       {"role": "point", "de": "Können Sie mir bitte die Informationen schicken?", "en": "Can you please send me the information?"},
       {"role": "point", "de": "Ich komme gern in Ihre Sprechstunde.", "en": "I am happy to come to your talking time."},
       {"role": "closing", "de": "Viele Grüße", "en": "Best wishes"},
-      {"role": "name", "de": "Saba Tesfaye", "en": "Saba Tesfaye"}
+      {"role": "name", "de": "Saba Schmitz", "en": "Saba Schmitz"}
     ],
     "gaps": [
       {"line": 1, "word": "Elternabend", "options": ["Elternabend", "Ausflug", "Arzt"]},
@@ -62,7 +62,7 @@
       {"role": "point", "de": "Ich bin bei der AOK versichert.", "en": "My health insurance is AOK."},
       {"role": "point", "de": "Meine Telefonnummer ist 0176 123 4567.", "en": "My phone number is 0176 123 4567."},
       {"role": "closing", "de": "Mit freundlichen Grüßen", "en": "Kind regards"},
-      {"role": "name", "de": "Saba Tesfaye", "en": "Saba Tesfaye"}
+      {"role": "name", "de": "Saba Schmitz", "en": "Saba Schmitz"}
     ],
     "gaps": [
       {"line": 1, "word": "Termin", "options": ["Termin", "Brief", "Stift"]},

@@ -109,8 +109,8 @@
         {
           "id": "p-r05", "level": "B1", "kind": "letter",
           "title_de": "Brief vom Jobcenter",
-          "text_de": "Sehr geehrte Frau Tesfaye,\nbitte kommen Sie am 3. Dezember um 9:15 Uhr zu einem Gespräch in Zimmer 214. Wir möchten mit Ihnen über Ihre berufliche Situation sprechen. Bringen Sie bitte Ihren Lebenslauf mit. Wenn Sie den Termin nicht wahrnehmen können, melden Sie sich bitte vorher telefonisch. Ohne wichtigen Grund kann Ihre Leistung gekürzt werden.\nMit freundlichen Grüßen\nIhr Jobcenter",
-          "questions": [{"q_de": "Was muss Frau Tesfaye machen, wenn sie nicht kommen kann?", "q_en": "What must Mrs Tesfaye do if she cannot come?",
+          "text_de": "Sehr geehrte Frau Schmitz,\nbitte kommen Sie am 3. Dezember um 9:15 Uhr zu einem Gespräch in Zimmer 214. Wir möchten mit Ihnen über Ihre berufliche Situation sprechen. Bringen Sie bitte Ihren Lebenslauf mit. Wenn Sie den Termin nicht wahrnehmen können, melden Sie sich bitte vorher telefonisch. Ohne wichtigen Grund kann Ihre Leistung gekürzt werden.\nMit freundlichen Grüßen\nIhr Jobcenter",
+          "questions": [{"q_de": "Was muss Frau Schmitz machen, wenn sie nicht kommen kann?", "q_en": "What must Mrs Schmitz do if she cannot come?",
                          "options": ["Einen Lebenslauf schicken", "Vorher anrufen", "Später einfach kommen"], "answer": 1}]
         },
         {

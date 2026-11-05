@@ -6,9 +6,9 @@
   {"id": "w-kind", "topic": "school", "level": "A1", "de": "das Kind", "article": "das", "plural": "die Kinder", "en": "child", "hint_am": "ልጅ", "picture": "1F9D2",
    "example": {"de": "Das Kind ist sieben Jahre alt.", "en": "The child is seven years old.", "blocks": [["Das Kind", "who"], ["ist", "verb"], ["sieben Jahre alt", "how"]]}},
   {"id": "w-klasse", "topic": "school", "level": "A1", "de": "die Klasse", "article": "die", "plural": "die Klassen", "en": "class (group of pupils)", "hint_am": "ክፍል (የተማሪዎች)", "picture": "1F9D1-200D-1F91D-200D-1F9D1",
-   "example": {"de": "Meine Tochter ist in der Klasse 2b.", "say": "Meine Tochter ist in der Klasse zwei b.", "en": "My daughter is in class 2b.", "blocks": [["Meine Tochter", "who"], ["ist", "verb"], ["in der Klasse 2b", "where"]]}},
+   "example": {"de": "Meine Tochter ist in der Klasse 8.", "say": "Meine Tochter ist in der Klasse acht.", "en": "My daughter is in class 8.", "blocks": [["Meine Tochter", "who"], ["ist", "verb"], ["in der Klasse 8", "where"]]}},
   {"id": "w-hausaufgaben", "topic": "school", "level": "A1", "de": "die Hausaufgaben", "article": "die", "en": "homework", "hint_am": "የቤት ሥራ", "picture": "1F4DD",
-   "example": {"de": "Lena macht die Hausaufgaben.", "en": "Lena does her homework.", "blocks": [["Lena", "who"], ["macht", "verb"], ["die Hausaufgaben", "what"]]}},
+   "example": {"de": "Amariam macht die Hausaufgaben.", "en": "Amariam does her homework.", "blocks": [["Amariam", "who"], ["macht", "verb"], ["die Hausaufgaben", "what"]]}},
 
   {"id": "w-elternabend", "topic": "school", "level": "A2", "de": "der Elternabend", "article": "der", "plural": "die Elternabende", "en": "parents' evening (meeting at school)", "hint_am": "የወላጆች ስብሰባ", "picture": "1F46A",
    "example": {"de": "Der Elternabend ist am Dienstag.", "en": "The parents' evening is on Tuesday.", "blocks": [["Der Elternabend", "who"], ["ist", "verb"], ["am Dienstag", "when"]]}},
@@ -23,12 +23,12 @@
 
   {"id": "w-pause", "topic": "school", "level": "A1", "de": "die Pause", "article": "die", "plural": "die Pausen", "en": "break", "hint_am": "እረፍት", "picture": "1F96A",
    "example": {"de": "Die Kinder spielen in der Pause.", "en": "The children play in the break.", "blocks": [["Die Kinder", "who"], ["spielen", "verb"], ["in der Pause", "when"]]}},
-  {"id": "w-schulranzen", "topic": "school", "level": "A2", "de": "der Schulranzen", "article": "der", "plural": "die Schulranzen", "en": "school bag", "hint_am": "የትምህርት ቦርሳ", "picture": "1F392",
-   "example": {"de": "Der Schulranzen ist schwer.", "en": "The school bag is heavy.", "blocks": [["Der Schulranzen", "who"], ["ist", "verb"], ["schwer", "how"]]}},
+  {"id": "w-rucksack", "topic": "school", "level": "A1", "de": "der Rucksack", "article": "der", "plural": "die Rucksäcke", "en": "backpack, school bag", "hint_am": "የጀርባ ቦርሳ", "picture": "1F392",
+   "example": {"de": "Der Rucksack ist schwer.", "en": "The backpack is heavy.", "blocks": [["Der Rucksack", "who"], ["ist", "verb"], ["schwer", "how"]]}},
   {"id": "w-heft", "topic": "school", "level": "A1", "de": "das Heft", "article": "das", "plural": "die Hefte", "en": "exercise book", "hint_am": "ደብተር", "picture": "1F4D3",
    "example": {"de": "Ich kaufe heute ein Heft.", "en": "I buy an exercise book today.", "blocks": [["Ich", "who"], ["kaufe", "verb"], ["heute", "when"], ["ein Heft", "what"]]}},
   {"id": "w-stift", "topic": "school", "level": "A1", "de": "der Stift", "article": "der", "plural": "die Stifte", "en": "pen, pencil", "hint_am": "እስክሪብቶ / እርሳስ", "picture": "270F",
-   "example": {"de": "Abel braucht einen Stift.", "en": "Abel needs a pen.", "blocks": [["Abel", "who"], ["braucht", "verb"], ["einen Stift", "what"]]}},
+   "example": {"de": "Phillip braucht einen Stift.", "en": "Phillip needs a pen.", "blocks": [["Phillip", "who"], ["braucht", "verb"], ["einen Stift", "what"]]}},
   {"id": "w-ausflug", "topic": "school", "level": "A2", "de": "der Ausflug", "article": "der", "plural": "die Ausflüge", "en": "school trip, outing", "hint_am": "ሽርሽር / ጉብኝት", "picture": "1F68C",
    "example": {"de": "Am Freitag macht die Klasse einen Ausflug.", "en": "On Friday the class goes on a trip.", "blocks": [["Am Freitag", "when"], ["macht", "verb"], ["die Klasse", "who"], ["einen Ausflug", "what"]]}},
 

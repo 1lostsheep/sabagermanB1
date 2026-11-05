@@ -1,7 +1,7 @@
 [
   {
     "id": "t-2611-zettel", "topic": "school", "level": "A1", "kind": "read_note",
-    "prompt_en": "Abel brings a note from school. Read it.", "prompt_hint_am": "አቤል ከትምህርት ቤት ማስታወሻ አመጣ። አንብቢው።",
+    "prompt_en": "Amariam brings a note from school. Read it.", "prompt_hint_am": "አማሪያም ከትምህርት ቤት ማስታወሻ አመጣች። አንብቢው።",
     "material_title": "Zettel von der Schule",
     "material_de": "Liebe Eltern,\nam Montag machen wir Fotos.\nBitte ziehen Sie Ihrem Kind schöne Kleidung an.\nEin Foto kostet 8 Euro.",
     "questions": [
@@ -13,11 +13,11 @@
     "id": "t-2611-ausflugzettel", "topic": "school", "level": "A2", "kind": "fill_form",
     "prompt_en": "Fill in the form for the school trip.", "prompt_hint_am": "ለትምህርት ቤቱ ሽርሽር ቅጹን ሙዪ።",
     "material_title": "Ihre Informationen",
-    "material_de": "Ihr Sohn heißt Abel Tesfaye.\nEr ist in der Klasse 3b.\nIhre Handynummer ist 0176 123 4567.",
+    "material_de": "Ihre Tochter heißt Amariam Schmitz.\nSie ist in der Klasse 8.\nIhre Handynummer ist 0176 123 4567.",
     "fields": [
-      {"label_de": "Vorname des Kindes", "label_en": "Child's first name", "answer": ["Abel"]},
-      {"label_de": "Nachname", "label_en": "Family name", "answer": ["Tesfaye"]},
-      {"label_de": "Klasse", "label_en": "Class", "answer": ["3b", "3 b", "3B"]},
+      {"label_de": "Vorname des Kindes", "label_en": "Child's first name", "answer": ["Amariam"]},
+      {"label_de": "Nachname", "label_en": "Family name", "answer": ["Schmitz"]},
+      {"label_de": "Klasse", "label_en": "Class", "answer": ["8", "Klasse 8"]},
       {"label_de": "Telefon", "label_en": "Phone", "answer": ["0176 123 4567", "01761234567", "0176 1234567", "0176-123 4567"]}
     ]
   },
@@ -33,12 +33,12 @@
   },
   {
     "id": "t-2611-stundenplan", "topic": "school", "level": "A1", "kind": "read_note",
-    "prompt_en": "Look at Lena's timetable.", "prompt_hint_am": "የሌናን የትምህርት ፕሮግራም ተመልከቺ።",
-    "material_title": "Stundenplan Klasse 2a – Dienstag",
-    "material_de": "8:00  Deutsch\n8:45  Mathe\n9:30  Pause\n10:00 Sport\n10:45 Musik\n11:30 Schluss",
+    "prompt_en": "Look at Amariam's timetable.", "prompt_hint_am": "የአማሪያምን የትምህርት ፕሮግራም ተመልከቺ።",
+    "material_title": "Stundenplan Klasse 8 – Dienstag",
+    "material_de": "8:00  Deutsch\n8:45  Mathe\n9:30  Pause\n10:00 Sport\n10:45 Englisch\n11:30 Biologie\n13:00 Schluss",
     "questions": [
-      {"q_de": "Was hat Lena um 10 Uhr?", "q_en": "What does Lena have at 10 o'clock?", "options": ["Mathe", "Sport", "Musik"], "answer": 1},
-      {"q_de": "Wann ist am Dienstag Schluss?", "q_en": "When does school end on Tuesday?", "options": ["Um 9:30 Uhr", "Um 11:30 Uhr", "Um 13 Uhr"], "answer": 1}
+      {"q_de": "Was hat Amariam um 10 Uhr?", "q_en": "What does Amariam have at 10 o'clock?", "options": ["Mathe", "Sport", "Musik"], "answer": 1},
+      {"q_de": "Wann ist am Dienstag Schluss?", "q_en": "When does school end on Tuesday?", "options": ["Um 9:30 Uhr", "Um 11:30 Uhr", "Um 13 Uhr"], "answer": 2}
     ]
   },
   {

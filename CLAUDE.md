@@ -8,6 +8,12 @@ A local German-learning app for **Saba**, so she passes the **DTZ at B1**. Paz b
 - **Exam rule (since 1 Nov 2026):** B1 in Speaking, B1 in one other area, and at least A2 in the third. Strategy: B1 in Speaking and Writing, and at least A2 in Listening and Reading.
 - **Saba never uses a terminal.** A desktop icon opens the app full-screen in Chrome (`--app --start-fullscreen`).
 
+## Family (use these real names in content)
+- **Saba Schmitz**: the learner. She is married to Paz (Pascal Schmitz) and lives in Mönchengladbach.
+- **Phillip Schmitz**: son, in Klasse 12.
+- **Amariam Schmitz**: daughter, in Klasse 8.
+- Both children are at secondary school, so school content should be about secondary school (Elternsprechtag, Klassenfahrt, Zeugnis, Entschuldigung), not primary school.
+
 ## Fixed decisions (ask Paz before changing any of these)
 - Target machine: an Ubuntu 24.04 LTS laptop. Linux first, but keep it portable to Windows (no Linux-only code in `app/`).
 - A local web app: a Python 3 + Flask backend, a vanilla JS front end (no build step), and SQLite in `data/coach.db`. It binds to 127.0.0.1 only. Saba's data never leaves the laptop.

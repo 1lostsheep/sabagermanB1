@@ -1,5 +1,5 @@
 [
-  {"id": "s-name", "topic": "about_me", "de": "Ich heiße Saba Tesfaye.", "en": "My name is Saba Tesfaye.", "hint_am": "ስሜ ሳባ ተስፋዬ ነው።"},
+  {"id": "s-name", "topic": "about_me", "de": "Ich heiße Saba Schmitz.", "en": "My name is Saba Schmitz.", "hint_am": "ስሜ ሳባ ሽሚትዝ ነው።"},
   {"id": "s-herkunft", "topic": "about_me", "de": "Ich komme aus Äthiopien.", "en": "I come from Ethiopia.", "hint_am": "የመጣሁት ከኢትዮጵያ ነው።"},
   {"id": "s-wohnort", "topic": "about_me", "de": "Ich wohne seit 2024 in Mönchengladbach.", "say": "Ich wohne seit zweitausendvierundzwanzig in Mönchengladbach.", "en": "I have lived in Mönchengladbach since 2024.", "hint_am": "ከ2024 ጀምሮ በሙንሽንግላድባህ እኖራለሁ።"},
   {"id": "s-familie", "topic": "about_me", "de": "Ich bin verheiratet und habe zwei Kinder.", "en": "I am married and I have two children.", "hint_am": "ባለትዳር ነኝ፣ ሁለት ልጆችም አሉኝ።"},
