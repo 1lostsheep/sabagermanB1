@@ -129,7 +129,7 @@ export function choose(container, options, answer, { columns = 1, cls = "" } = {
             } else msg.textContent = S.tryAgain.icon + " " + S.tryAgain.en;
           }
         },
-      }, typeof opt === "string" ? opt : opt.el));
+      }, typeof opt === "string" || opt instanceof Node ? opt : opt.el));
     container.append(h("div", { class: `choices cols-${columns}` }, ...buttons), msg);
   });
 }
