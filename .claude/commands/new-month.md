@@ -53,7 +53,7 @@ You are preparing a new monthly content batch for Saba's German B1 Coach. Argume
 
 ## 4. Build and check
 ```bash
-.venv/bin/python tools/build_batch.py <YYYY-MM>   # validates, fetches pictures, renders audio
+.venv/bin/python tools/build_batch.py <YYYY-MM>   # validates, fetches pictures, renders audio (voice from TTS_ENGINE)
 .venv/bin/pytest -q
 ```
 If a picture hexcode is not found, choose another one from openmoji.org. Fix every validation error.

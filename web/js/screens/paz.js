@@ -82,6 +82,6 @@ export async function render(root) {
       h("p", {}, `${d.api_usage.calls} calls · ${d.api_usage.input_tokens + d.api_usage.output_tokens} tokens · ` +
         `≈ €${d.api_usage.est_cost_eur.toFixed(2)} of €${d.api_budget_eur} budget`),
       h("p", { class: "muted" }, "Used from Phase 2 (speaking, letter marking, monthly check).")),
-    h("div", { class: "card muted" }, "Pictures: OpenMoji (openmoji.org), CC BY-SA 4.0. Voices: Piper (Thorsten, Kerstin, CC0)."),
+    h("div", { class: "card muted" }, "Pictures: OpenMoji (openmoji.org), CC BY-SA 4.0. Voices: Google Cloud Text-to-Speech or Piper (see LICENSES.md)."),
     h("button", { class: "btn", onclick: () => go("") }, "← Back to Saba's app")));
 }

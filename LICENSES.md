@@ -10,8 +10,12 @@ the open-source emoji and icon project. License: **CC BY-SA 4.0**
 Source: https://openmoji.org/ · https://github.com/hfg-gmuend/openmoji (tag 15.1.0).
 The files are used unchanged. Attribution is also shown in the app (Paz page → About).
 
-## Voices — Piper
-German audio in `content/media/audio/` is generated with **Piper** (https://github.com/OHF-Voice/piper1-gpl,
+## Voices — Google Cloud Text-to-Speech
+Lesson audio in `content/media/audio/` is generated with Google Cloud Text-to-Speech when
+`TTS_ENGINE=google` (Paz's own Google Cloud account). The generated audio is used privately in this app.
+
+## Voices — Piper (fallback)
+When `TTS_ENGINE=piper`, audio is generated with **Piper** (https://github.com/OHF-Voice/piper1-gpl,
 GPL-3.0; the generated audio is not covered by the GPL) using these voice models:
 - *Thorsten* (de_DE-thorsten) by Thorsten Müller — CC0 (https://github.com/thorstenMueller/Thorsten-Voice)
 - *Kerstin* (de_DE-kerstin) — dataset CC0 (https://github.com/rhasspy/dataset-voice-kerstin)

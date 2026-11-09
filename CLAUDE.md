@@ -21,7 +21,10 @@ A local German-learning app for **Saba**, so she passes the **DTZ at B1**. Paz b
 - The Claude API is used **only** for speaking practice, letter marking and the monthly assessment/re-plan (Phase 2+).
   - The key comes from `.env` and is never committed.
   - Every call must go through `app/usage.py`, which keeps the monthly counter and checks the budget.
-- Speech runs on the laptop: faster-whisper for STT (Phase 2) and Piper for TTS (it renders content audio now).
+- Speech: faster-whisper on the laptop for STT (Phase 2).
+- Lesson audio is rendered once, when content is built, with **Google Cloud Text-to-Speech** (`TTS_ENGINE=google`, Paz's choice on 9 Nov 2026, because Piper sounded too robotic to Saba). Only lesson text goes to Google, never Saba's data, and the app still plays the files offline.
+- **Piper** stays as the free offline fallback (`TTS_ENGINE=piper`) and is the planned live voice for the Phase 2 speaking partner.
+- The engines are in `tools/tts.py`; `tools/voice_samples.py` lets Saba compare voices.
 - Content is written by **Claude Code** through `/new-month`, then validated and rendered by `tools/build_batch.py`. It does not go through the API.
 - Pictures are OpenMoji (CC BY-SA 4.0). Keep `LICENSES.md` up to date whenever a new media source is added.
 
@@ -50,7 +53,7 @@ A local German-learning app for **Saba**, so she passes the **DTZ at B1**. Paz b
   - `content.py`: loading and validating content.
 - `web/`: `index.html`, `css/app.css`, `js/main.js` (router), and `js/screens/*.js` with one module per screen.
 - `content/FORMAT.md`: **the content JSON spec**. Read it before touching content.
-- `tools/build_batch.py`: validates a batch, fetches OpenMoji SVGs and renders Piper audio.
+- `tools/build_batch.py`: validates a batch, fetches OpenMoji SVGs and renders audio (via `tools/tts.py`: Google or Piper).
 - `launcher/`: the desktop file, the systemd user service and `launch.sh`.
 - `tests/`: pytest.
 
@@ -61,6 +64,8 @@ A local German-learning app for **Saba**, so she passes the **DTZ at B1**. Paz b
 .venv/bin/pytest -q             # tests
 .venv/bin/python tools/build_batch.py 2026-11          # validate + fetch pictures + render audio
 .venv/bin/python tools/build_batch.py 2026-11 --check  # validate only
+.venv/bin/python tools/build_batch.py all --force      # re-record all audio (e.g. after changing voice)
+.venv/bin/python tools/voice_samples.py                # compare Google voices
 ```
 The monthly content workflow is `/new-month` (see `.claude/commands/new-month.md`).
 

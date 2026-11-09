@@ -25,7 +25,7 @@ content/media/audio/<batch_id>/<id>.ogg         rendered by tools/build_batch.py
 - **Never use grammar jargon** in any field Saba sees.
 - **Levels** are `"A1"`, `"A2"` or `"B1"`.
 - **Topics** are `school`, `doctor`, `jobcenter`, `landlord`, `shopping` and `neighbours`, plus new ones as needed, each listed in `batch.json`.
-- **Text for speech:** Piper reads `de` (or `say`, if given). Write times and numbers the way people say them. Example: `"say": "um halb zehn"` for the text `"9:30"`. Use real abbreviations only in `de`.
+- **Text for speech:** the voice engine (Google or Piper, see `TTS_ENGINE`) reads `de` (or `say`, if given). Write times and numbers the way people say them. Example: `"say": "um halb zehn"` for the text `"9:30"`. Use real abbreviations only in `de`.
 - **Speakers:** `"f"` is a woman's voice and `"m"` is a man's voice.
 - **Pictures:** use an [OpenMoji](https://openmoji.org/) hexcode such as `"1F9D1-200D-2695-FE0F"`. Browse the site and copy the code shown under the emoji.
 - **Choices:** every question has `options` (2–4 short strings) and `answer`, the 0-based index of the right option. Questions show German first (`q_de`), with English below it (`q_en`).

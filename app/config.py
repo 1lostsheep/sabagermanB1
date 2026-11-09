@@ -15,7 +15,8 @@ def load_env(path: Path = ROOT / ".env") -> dict:
             key, _, val = line.partition("=")
             values[key.strip()] = val.strip().strip('"').strip("'")
     # Real environment variables win over the file
-    for key in list(values) + ["LEARNER_NAME", "PAZ_PIN", "ANTHROPIC_API_KEY", "MONTHLY_BUDGET_EUR", "PORT"]:
+    for key in list(values) + ["LEARNER_NAME", "PAZ_PIN", "ANTHROPIC_API_KEY", "MONTHLY_BUDGET_EUR", "PORT",
+                                 "TTS_ENGINE", "GOOGLE_TTS_API_KEY", "GOOGLE_TTS_VOICE_F", "GOOGLE_TTS_VOICE_M", "GOOGLE_TTS_RATE"]:
         if key in os.environ:
             values[key] = os.environ[key]
     return values
