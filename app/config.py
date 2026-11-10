@@ -13,7 +13,12 @@ def load_env(path: Path = ROOT / ".env") -> dict:
             if not line or line.startswith("#") or "=" not in line:
                 continue
             key, _, val = line.partition("=")
-            values[key.strip()] = val.strip().strip('"').strip("'")
+            val = val.strip()
+            if val[:1] in ('"', "'") and val.count(val[0]) >= 2:
+                val = val[1:val.index(val[0], 1)]       # "quoted value" # comment
+            else:
+                val = val.split(" #", 1)[0].strip()     # value  # comment
+            values[key.strip()] = val
     # Real environment variables win over the file
     for key in list(values) + ["LEARNER_NAME", "PAZ_PIN", "ANTHROPIC_API_KEY", "MONTHLY_BUDGET_EUR", "PORT",
                                  "TTS_ENGINE", "GOOGLE_TTS_API_KEY", "GOOGLE_TTS_VOICE_F", "GOOGLE_TTS_VOICE_M", "GOOGLE_TTS_RATE"]:

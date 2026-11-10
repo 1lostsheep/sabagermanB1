@@ -13,7 +13,7 @@ async function login(root) {
     const msg = h("div", { class: "muted" });
     const tryLogin = async () => {
       try { await api.post("/api/paz/login", { pin: pin.value }); resolve(); }
-      catch { msg.textContent = "Wrong PIN."; pin.value = ""; }
+      catch { msg.textContent = "Wrong PIN. It is PAZ_PIN in the .env file (default 1234). Number pad: check Num Lock is on."; pin.value = ""; }
     };
     pin.addEventListener("keydown", (e) => e.key === "Enter" && tryLogin());
     screen(root, h("div", { class: "paz" }, h("h1", {}, "🔒 Paz"), pin, msg,

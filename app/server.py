@@ -440,7 +440,7 @@ def create_app(db_path=None, content_root=None):
 
     @app.post("/api/paz/login")
     def paz_login():
-        if str(body().get("pin", "")) == str(config.get("PAZ_PIN", "1234")):
+        if str(body().get("pin", "")).strip() == str(config.get("PAZ_PIN", "1234")).strip():
             session["paz"] = True
             return jsonify(ok=True)
         return jsonify(ok=False), 401

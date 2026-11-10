@@ -118,3 +118,7 @@ def test_usage_counter(tmp_path):
     assert usage.can_spend(conn, 25, d)
     assert not usage.can_spend(conn, 0.001, d)
     assert usage.this_month(conn, date(2026, 12, 1))["calls"] == 0
+
+
+def test_pin_ignores_spaces(client):
+    assert client.post("/api/paz/login", json={"pin": " 4321 "}).status_code == 200
