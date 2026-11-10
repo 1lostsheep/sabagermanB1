@@ -5,11 +5,47 @@
   "level": "A1-A2",
   "created": "2026-11-04",
   "topics": [
-    {"id": "school", "title_en": "School", "title_de": "Schule", "picture": "1F3EB", "hint_am": "ትምህርት ቤት"},
-    {"id": "doctor", "title_en": "Doctor", "title_de": "Arzt", "picture": "1F3E5", "hint_am": "ሐኪም"},
-    {"id": "jobcenter", "title_en": "Jobcenter", "title_de": "Jobcenter", "picture": "1F3E2", "hint_am": "የሥራ ማዕከል"},
-    {"id": "landlord", "title_en": "Home and landlord", "title_de": "Wohnung und Vermieter", "picture": "1F3E0", "hint_am": "ቤት እና አከራይ"},
-    {"id": "shopping", "title_en": "Shopping", "title_de": "Einkaufen", "picture": "1F6D2", "hint_am": "ግብይት"},
-    {"id": "neighbours", "title_en": "Neighbours", "title_de": "Nachbarn", "picture": "1F3D8", "hint_am": "ጎረቤቶች"}
+    {
+      "id": "school",
+      "title_en": "School",
+      "title_de": "Schule",
+      "picture": "arasaac:3082",
+      "hint_am": "ትምህርት ቤት"
+    },
+    {
+      "id": "doctor",
+      "title_en": "Doctor",
+      "title_de": "Arzt",
+      "picture": "arasaac:29859",
+      "hint_am": "ሐኪም"
+    },
+    {
+      "id": "jobcenter",
+      "title_en": "Jobcenter",
+      "title_de": "Jobcenter",
+      "picture": "arasaac:24637",
+      "hint_am": "የሥራ ማዕከል"
+    },
+    {
+      "id": "landlord",
+      "title_en": "Home and landlord",
+      "title_de": "Wohnung und Vermieter",
+      "picture": "arasaac:8012",
+      "hint_am": "ቤት እና አከራይ"
+    },
+    {
+      "id": "shopping",
+      "title_en": "Shopping",
+      "title_de": "Einkaufen",
+      "picture": "arasaac:8985",
+      "hint_am": "ግብይት"
+    },
+    {
+      "id": "neighbours",
+      "title_en": "Neighbours",
+      "title_de": "Nachbarn",
+      "picture": "arasaac:6241",
+      "hint_am": "ጎረቤቶች"
+    }
   ]
 }

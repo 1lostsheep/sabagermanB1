@@ -12,7 +12,7 @@ content/batches/2026-11/
   tasks.json      small real-life tasks
   speaking.json   "about me" phrases to listen and repeat (until Phase 2)
 content/placement/v1/placement.json
-content/media/pictures/openmoji/<HEXCODE>.svg   fetched by tools/build_batch.py
+content/media/pictures/arasaac/<id>.png         fetched by tools/build_batch.py
 content/media/audio/<batch_id>/<id>.ogg         rendered by tools/build_batch.py
 ```
 
@@ -27,7 +27,7 @@ content/media/audio/<batch_id>/<id>.ogg         rendered by tools/build_batch.py
 - **Topics** are `school`, `doctor`, `jobcenter`, `landlord`, `shopping` and `neighbours`, plus new ones as needed, each listed in `batch.json`.
 - **Text for speech:** the voice engine (Google or Piper, see `TTS_ENGINE`) reads `de` (or `say`, if given). Write times and numbers the way people say them. Example: `"say": "um halb zehn"` for the text `"9:30"`. Use real abbreviations only in `de`.
 - **Speakers:** `"f"` is a woman's voice and `"m"` is a man's voice.
-- **Pictures:** use an [OpenMoji](https://openmoji.org/) hexcode such as `"1F9D1-200D-2695-FE0F"`. Browse the site and copy the code shown under the emoji.
+- **Pictures:** `"arasaac:<id>"`, a picture from ARASAAC (https://arasaac.org). Find ids with `.venv/bin/python tools/arasaac.py Arzt Termin` and pick the one that shows the meaning most clearly; colourful situation pictures beat plain objects. An OpenMoji hexcode such as `"1F9D1-200D-2695-FE0F"` also works as a fallback.
 - **Choices:** every question has `options` (2–4 short strings) and `answer`, the 0-based index of the right option. Questions show German first (`q_de`), with English below it (`q_en`).
 
 ## batch.json
@@ -49,7 +49,7 @@ content/media/audio/<batch_id>/<id>.ogg         rendered by tools/build_batch.py
   "id": "w-arzt", "topic": "doctor", "level": "A1",
   "de": "der Arzt", "article": "der", "plural": "die Ärzte",
   "en": "doctor", "hint_am": "ሐኪም",
-  "picture": "1F9D1-200D-2695-FE0F",
+  "picture": "arasaac:2467",
   "example": {
     "de": "Ich gehe heute zum Arzt.",
     "en": "I go to the doctor today.",

@@ -74,6 +74,15 @@ export async function render(root) {
         h("div", {}, r.created_at.replace("T", " "), " ", h("audio", { controls: true, src: `/api/paz/recording/${r.id}` })))) : null,
       d.writings.length ? h("div", {}, h("h3", {}, "Latest writing"), ...d.writings.filter((w) => w.text).map((w) =>
         h("p", {}, h("b", {}, `${w.day} · ${w.kind}: `), h("span", { lang: "de" }, w.text)))) : null),
+    h("div", { class: "card" }, h("h2", {}, `Pictures flagged as not clear (${d.picture_flags.length})`),
+      d.picture_flags.length ? h("div", { class: "grid" }, ...d.picture_flags.map((f) =>
+        h("div", { class: "card", style: "text-align:center" },
+          h("img", { src: f.picture, style: "width:110px;height:110px;object-fit:contain" }),
+          h("div", {}, h("b", { lang: "de" }, f.label || f.item_id)),
+          h("div", { class: "muted" }, `${f.item_id} · flagged ${f.n}× · ${f.last.slice(0, 10)}`)))) :
+        h("p", { class: "muted" }, "None."),
+      h("p", { class: "muted" }, "To swap one: ask Claude Code, or find a better picture with " +
+        "tools/arasaac.py and change \"picture\" in the batch's words.json. The flag disappears once the picture changes.")),
     h("div", { class: "card" }, h("h2", {}, `Amharic hints flagged by Saba (${d.hint_flags.length})`),
       d.hint_flags.length ? h("table", {}, ...d.hint_flags.map((f) => h("tr", {},
         h("td", {}, f.ts.slice(0, 10)), h("td", {}, f.item_id), h("td", { lang: "am" }, f.hint_text)))) :
@@ -82,6 +91,6 @@ export async function render(root) {
       h("p", {}, `${d.api_usage.calls} calls · ${d.api_usage.input_tokens + d.api_usage.output_tokens} tokens · ` +
         `≈ €${d.api_usage.est_cost_eur.toFixed(2)} of €${d.api_budget_eur} budget`),
       h("p", { class: "muted" }, "Used from Phase 2 (speaking, letter marking, monthly check).")),
-    h("div", { class: "card muted" }, "Pictures: OpenMoji (openmoji.org), CC BY-SA 4.0. Voices: Google Cloud Text-to-Speech or Piper (see LICENSES.md)."),
+    h("div", { class: "card muted" }, "Pictures: ARASAAC (arasaac.org) by Sergio Palao, Government of Aragón, CC BY-NC-SA. Voices: Google Cloud Text-to-Speech or Piper (see LICENSES.md)."),
     h("button", { class: "btn", onclick: () => go("") }, "← Back to Saba's app")));
 }

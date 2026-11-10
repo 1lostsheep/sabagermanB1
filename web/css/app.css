@@ -101,7 +101,7 @@ h2 { font-size: 1.35rem; margin: 0; }
 .choices.cols-3 { grid-template-columns: repeat(3, 1fr); }
 .btn.choice { font-size: 1.25rem; min-height: 80px; }
 .btn.choice.pic { min-height: 160px; padding: 10px; }
-.btn.choice.pic img { width: 120px; height: 120px; }
+.btn.choice.pic img { width: 130px; height: 130px; object-fit: contain; }
 .btn.right { background: var(--good-bg); border-color: var(--good); }
 .btn.show-right { border-color: var(--good); border-style: dashed; }
 .btn.tryagain { background: var(--amber-bg); border-color: var(--amber); opacity: .7; animation: wiggle .3s; }
@@ -110,6 +110,11 @@ h2 { font-size: 1.35rem; margin: 0; }
 .feedback.good { color: var(--good); }
 .feedback.soft { color: #a26c00; }
 
+.pic-wrap, .pic-opt { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.pic-opt > .btn { width: 100%; }
+.pic-flag { font: inherit; font-size: .7rem; color: var(--muted); background: none; border: none; cursor: pointer; padding: 2px 6px; opacity: .7; }
+.pic-flag:hover { opacity: 1; text-decoration: underline; }
+.pic-flag:disabled { cursor: default; text-decoration: none; }
 .picture { width: 200px; height: 200px; display: block; margin: 0 auto; }
 .word-card { background: var(--card); border-radius: 28px; border: 3px solid var(--line); padding: 22px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
 .word-card .de { font-size: 2.2rem; font-weight: 700; }

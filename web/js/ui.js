@@ -73,8 +73,41 @@ export function steps(n, total) {
     ...Array.from({ length: total }, (_, i) => h("span", { class: i < n ? "dot on" : "dot" })));
 }
 
-export function picture(src, alt = "") {
-  return h("img", { class: "picture", src, alt, draggable: "false" });
+/** A picture. With flag = {item, label} it can get a small "picture not clear" button. */
+export function picture(src, alt = "", flag = null) {
+  return h("img", { class: "picture", src, alt, draggable: "false",
+                    "data-flag-item": flag && flag.item, "data-flag-label": flag && flag.label });
+}
+
+/** Small 🚩 button: flags a picture as not clear. Paz sees it on his page. */
+export function pictureFlag(img) {
+  if (!img || img.tagName !== "IMG" || !img.dataset.flagItem) return null;
+  const btn = h("button", {
+    class: "pic-flag", type: "button", title: "This picture is not clear",
+    onclick: async (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      btn.disabled = true;
+      try {
+        await api.post("/api/picture-flag", {
+          item_id: img.dataset.flagItem, label: img.dataset.flagLabel || "", picture: new URL(img.src).pathname });
+      } catch {}
+      btn.textContent = S.thanksFlag.icon + " " + S.thanksFlag.en;
+    },
+  }, "🚩 Picture not clear?");
+  return btn;
+}
+
+/** A standalone picture with its flag button underneath. */
+export function flaggedPicture(src, alt, flag) {
+  const img = picture(src, alt, flag);
+  return h("div", { class: "pic-wrap" }, img, pictureFlag(img));
+}
+
+/** Wrap a choice button so a picture option gets its flag button below (never inside the button). */
+export function choiceCell(btn, opt) {
+  const flag = pictureFlag(opt);
+  return flag ? h("div", { class: "pic-opt" }, btn, flag) : btn;
 }
 
 /** Article colour class: der blue, die purple, das green. */
@@ -130,7 +163,7 @@ export function choose(container, options, answer, { columns = 1, cls = "" } = {
           }
         },
       }, typeof opt === "string" || opt instanceof Node ? opt : opt.el));
-    container.append(h("div", { class: `choices cols-${columns}` }, ...buttons), msg);
+    container.append(h("div", { class: `choices cols-${columns}` }, ...buttons.map((b, i) => choiceCell(b, options[i]))), msg);
   });
 }
 

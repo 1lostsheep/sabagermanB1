@@ -3,7 +3,7 @@ import { api } from "../api.js";
 import { player, stopAll } from "../audio.js";
 import { go, refreshCounters } from "../main.js";
 import { S } from "../strings.js";
-import { button, celebrate, h, hint, picture, say, screen, steps, t, wait } from "../ui.js";
+import { button, celebrate, choiceCell, h, hint, picture, say, screen, steps, t, wait } from "../ui.js";
 
 const SECTION_TITLE = { words: S.secWords, listening: S.secListening, reading: S.secReading,
                         speaking: S.secSpeaking, writing: S.secWriting };
@@ -24,7 +24,7 @@ function chooseOnce(container, options, { columns = 1, cls = "" } = {}) {
     });
     const dk = h("button", { class: "btn", onclick: () => pick(-1, dk) }, S.dontKnow.icon + " " + S.dontKnow.en);
     all.push(dk);
-    container.append(h("div", { class: `choices cols-${columns}` }, ...all.slice(0, -1)), dk);
+    container.append(h("div", { class: `choices cols-${columns}` }, ...all.slice(0, -1).map((b, i) => choiceCell(b, options[i]))), dk);
   });
 }
 
@@ -83,7 +83,7 @@ async function words(root, sec, prog, save) {
     const it = sec.items[prog.item];
     const box = screen(root, steps(prog.item + 1, sec.items.length), say(S.tapPicture),
       player(it.audio, { autoplay: true, compact: true }));
-    const pending = chooseOnce(box, it.pictures.map((p) => picture(p)), { columns: 2, cls: "pic" });
+    const pending = chooseOnce(box, it.pictures.map((p, i) => picture(p, "", { item: `${it.id}:${i + 1}`, label: `${it.de} (picture ${i + 1})` })), { columns: 2, cls: "pic" });
     box.append(pauseButton());
     const chosen = await pending;
     await answer(it.id, "words", it.level, chosen, it.answer, { ...prog, item: prog.item + 1 });

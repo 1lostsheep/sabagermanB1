@@ -3,12 +3,15 @@
 ## App code
 © Paz (Pascal Schmitz) and contributors. Private family project.
 
-## Pictures — OpenMoji
-All emoji pictures in `content/media/pictures/openmoji/` are from **OpenMoji**,
-the open-source emoji and icon project. License: **CC BY-SA 4.0**
-(https://creativecommons.org/licenses/by-sa/4.0/).
-Source: https://openmoji.org/ · https://github.com/hfg-gmuend/openmoji (tag 15.1.0).
-The files are used unchanged. Attribution is also shown in the app (Paz page → About).
+## Pictures — ARASAAC
+The pictures in `content/media/pictures/arasaac/` are pictograms from **ARASAAC** (https://arasaac.org).
+Author: Sergio Palao. Origin: ARASAAC (https://arasaac.org). Licence: **CC BY-NC-SA 4.0**
+(https://creativecommons.org/licenses/by-nc-sa/4.0/). Owner: Government of Aragón (Spain).
+Used unchanged in this private, non-commercial family app. Credit is also shown on Paz's page.
+
+## Pictures — OpenMoji (fallback)
+Content may still use OpenMoji pictures (`content/media/pictures/openmoji/`), CC BY-SA 4.0,
+https://openmoji.org. None are used at the moment.
 
 ## Voices — Google Cloud Text-to-Speech
 Lesson audio in `content/media/audio/` is generated with Google Cloud Text-to-Speech when

@@ -104,3 +104,12 @@ CREATE TABLE IF NOT EXISTS api_usage (
   output_tokens INTEGER NOT NULL DEFAULT 0,
   est_cost_eur  REAL NOT NULL DEFAULT 0
 );
+
+-- Pictures Saba or Paz flagged as "not clear"
+CREATE TABLE IF NOT EXISTS picture_flag (
+  id      INTEGER PRIMARY KEY AUTOINCREMENT,
+  item_id TEXT NOT NULL,                -- word id, or placement item:option
+  label   TEXT,                         -- the German word, for Paz's page
+  picture TEXT NOT NULL,                -- /media/pictures/... path at the time of flagging
+  ts      TEXT NOT NULL
+);

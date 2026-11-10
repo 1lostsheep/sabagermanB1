@@ -3,16 +3,16 @@
 import { api } from "../api.js";
 import { player, play } from "../audio.js";
 import { S } from "../strings.js";
-import { choose, germanWord, h, picture, say, screen, shuffle, steps, wait, celebrate } from "../ui.js";
+import { choose, flaggedPicture, germanWord, h, picture, say, screen, shuffle, steps, wait, celebrate } from "../ui.js";
 
 async function card(root, w, n, total, mode) {
   const opts = shuffle([w, ...w.distractors]);
   const answer = opts.indexOf(w);
   if (mode === "listen") {
     const box = screen(root, steps(n, total), say(S.tapPicture), player(w.audio, { autoplay: true, compact: true }));
-    return choose(box, opts.map((o) => picture(o.picture, "")), answer, { columns: opts.length, cls: "pic" });
+    return choose(box, opts.map((o) => picture(o.picture, "", { item: o.id, label: o.de })), answer, { columns: opts.length, cls: "pic" });
   }
-  const box = screen(root, steps(n, total), say(S.tapWord), picture(w.picture, w.en));
+  const box = screen(root, steps(n, total), say(S.tapWord), flaggedPicture(w.picture, w.en, { item: w.id, label: w.de }));
   const ok = await choose(box, opts.map((o) => germanWord(o)), answer);
   await play(w.audio);
   return ok;

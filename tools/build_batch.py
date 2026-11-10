@@ -21,7 +21,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 from app import content as C  # noqa: E402
-from tools import tts  # noqa: E402
+from tools import arasaac, tts  # noqa: E402
 from tools.tts import download as _download, log  # noqa: E402
 
 OPENMOJI_TAG = "15.1.0"
@@ -37,10 +37,12 @@ def fetch_pictures(codes, force=False):
         if dest.exists() and not force:
             continue
         dest.parent.mkdir(parents=True, exist_ok=True)
-        url = OPENMOJI_URL.format(tag=OPENMOJI_TAG, code=code)
         tmp = dest.with_suffix(".part")
         try:
-            _download(url, tmp)
+            if code.startswith("arasaac:"):
+                arasaac.download(int(code.split(":", 1)[1]), tmp)
+            else:
+                _download(OPENMOJI_URL.format(tag=OPENMOJI_TAG, code=code), tmp)
             tmp.replace(dest)
             got += 1
         except Exception as e:
@@ -48,7 +50,7 @@ def fetch_pictures(codes, force=False):
             if dest.exists():
                 log(f"  (could not refresh picture {code}: {e}; keeping the old one)")
             else:
-                log(f"  ! picture {code} not found ({e}). Pick another hexcode on openmoji.org")
+                log(f"  ! picture {code} not found ({e}). Pick another one with tools/arasaac.py")
     return got
 
 

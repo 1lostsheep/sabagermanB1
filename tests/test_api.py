@@ -122,3 +122,16 @@ def test_usage_counter(tmp_path):
 
 def test_pin_ignores_spaces(client):
     assert client.post("/api/paz/login", json={"pin": " 4321 "}).status_code == 200
+
+
+def test_picture_flag_shows_on_paz_page_until_replaced(client):
+    finish_placement(client)
+    w = next(b for b in client.get("/api/today").get_json()["blocks"] if b["type"] == "new_words")["words"][0]
+    assert client.post("/api/picture-flag", json={"item_id": w["id"], "label": w["de"], "picture": w["picture"]}).status_code == 200
+    client.post("/api/picture-flag", json={"item_id": w["id"], "label": w["de"], "picture": w["picture"]})
+    # a picture that is no longer used in the content does not show
+    client.post("/api/picture-flag", json={"item_id": "w-old", "label": "alt", "picture": "/media/pictures/arasaac/1.png"})
+    assert client.post("/api/picture-flag", json={"picture": "/etc/passwd"}).status_code == 400
+    client.post("/api/paz/login", json={"pin": "4321"})
+    flags = client.get("/api/paz/summary").get_json()["picture_flags"]
+    assert len(flags) == 1 and flags[0]["item_id"] == w["id"] and flags[0]["n"] == 2

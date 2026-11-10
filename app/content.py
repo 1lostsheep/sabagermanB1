@@ -21,7 +21,7 @@ LETTER_ROLES = {"greeting", "reason", "point", "closing", "name"}
 LISTEN_KINDS = {"announcement", "phone_message", "conversation", "radio"}
 READ_KINDS = {"letter", "sign", "ad", "form", "message", "notice"}
 TASK_KINDS = {"read_note", "choose_reply", "fill_form"}
-PICTURE_RE = re.compile(r"^[0-9A-F]{4,6}(-[0-9A-F]{4,6})*$")
+PICTURE_RE = re.compile(r"^([0-9A-F]{4,6}(-[0-9A-F]{4,6})*|arasaac:[0-9]+)$")  # OpenMoji hexcode or arasaac:<id>
 ID_PREFIX = {"words": "w-", "listening": "l-", "reading": "r-", "letters": "b-", "tasks": "t-", "speaking": "s-"}
 
 
@@ -73,6 +73,9 @@ def audio_rel(batch: str, item_id: str, suffix: str = "") -> str:
 
 
 def picture_rel(code: str) -> str:
+    """'arasaac:6561' -> pictures/arasaac/6561.png; '1F34E' (OpenMoji) -> pictures/openmoji/1F34E.svg"""
+    if code.startswith("arasaac:"):
+        return f"pictures/arasaac/{code.split(':', 1)[1]}.png"
     return f"pictures/openmoji/{code}.svg"
 
 
@@ -185,7 +188,7 @@ def validate_batch(batch: dict, media_root: Path = MEDIA, check_media: bool = Tr
         if w.get("article") and not str(w.get("de", "")).startswith(w["article"] + " "):
             errors.append(f"{where}: 'de' should start with the article")
         if w.get("picture") and not PICTURE_RE.match(w["picture"]):
-            errors.append(f"{where}: picture must be an OpenMoji hexcode like 1F34E")
+            errors.append(f"{where}: picture must be 'arasaac:<id>' or an OpenMoji hexcode like 1F34E")
         ex = w.get("example")
         if ex:
             _require(where + " example", ex, ["de", "en", "blocks"], errors)

@@ -20,12 +20,14 @@ You are preparing a new monthly content batch for Saba's German B1 Coach. Argume
   print("hardest words:", [dict(r) for r in c.execute("select word_id, lapses, box from card where lapses>0 order by lapses desc limit 15")])
   print("block scores (30 days):", [dict(r) for r in c.execute("select block, round(avg(score*1.0/max),2) ratio, count(*) n from block_result where max>0 and day >= date('now','-30 day') group by block")])
   print("flagged Amharic hints:", [dict(r) for r in c.execute("select item_id, hint_text from hint_flag")])
+  print("flagged pictures:", [dict(r) for r in c.execute("select item_id, label, picture, count(*) n from picture_flag group by item_id, picture")])
   PY
   ```
   Use it to decide what to do:
   - Give more items and easier texts to weak areas.
   - Recycle the hardest words in new example sentences.
   - **Fix every flagged Amharic hint** in the batch where it first appeared.
+  - **Replace every flagged picture** (if it is still the current one) with a clearer ARASAAC picture.
 
 ## 2. Plan the month (tell Paz in 5 lines before writing)
 - About 24 lesson days (Mon–Fri, 4 weeks; Saturdays are tests and need no new content). That gives:
@@ -46,7 +48,7 @@ You are preparing a new monthly content batch for Saba's German B1 Coach. Argume
   - an article if it is a noun;
   - an English meaning in A2 English;
   - a short Amharic hint;
-  - an OpenMoji hexcode for its picture. Check that the emoji really shows the word; prefer a concrete object;
+  - an ARASAAC picture (`"arasaac:<id>"`). Search with `.venv/bin/python tools/arasaac.py <word>`, **look at the candidates** (open `https://static.arasaac.org/pictograms/<id>/<id>_300.png`), and choose the one where the meaning is obvious without the word;
   - an example sentence whose `blocks` have the action word in slot 2.
 - Numbers, times and abbreviations go in `say`, written out the way they are spoken.
 - Use the family names listed in CLAUDE.md (Saba, Phillip in Klasse 12, Amariam in Klasse 8).
@@ -56,7 +58,7 @@ You are preparing a new monthly content batch for Saba's German B1 Coach. Argume
 .venv/bin/python tools/build_batch.py <YYYY-MM>   # validates, fetches pictures, renders audio (voice from TTS_ENGINE)
 .venv/bin/pytest -q
 ```
-If a picture hexcode is not found, choose another one from openmoji.org. Fix every validation error.
+If a picture is not found, choose another id with tools/arasaac.py. Fix every validation error.
 
 ## 5. Finish
 - Show Paz one sample of each content type and the topic plan.

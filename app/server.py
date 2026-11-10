@@ -321,6 +321,23 @@ def create_app(db_path=None, content_root=None):
         conn().commit()
         return jsonify(ok=True)
 
+    @app.post("/api/picture-flag")
+    def picture_flag():
+        d = body()
+        pic = str(d.get("picture", ""))
+        if not pic.startswith("/media/pictures/"):
+            abort(400)
+        conn().execute("INSERT INTO picture_flag (item_id, label, picture, ts) VALUES (?,?,?,?)",
+                       (str(d.get("item_id", "?"))[:80], str(d.get("label", ""))[:80], pic[:200], now_iso()))
+        conn().commit()
+        return jsonify(ok=True)
+
+    def pictures_in_use():
+        cont = content()
+        used = {"/media/" + C.picture_rel(w["picture"]) for w in cont["words"] if w.get("picture")}
+        used |= {"/media/" + C.picture_rel(c) for c in C.pictures_of_placement(C.load_placement())}
+        return used
+
     @app.get("/api/progress")
     def progress():
         n = progress_numbers()
@@ -472,6 +489,11 @@ def create_app(db_path=None, content_root=None):
         recs = c.execute("SELECT id, created_at FROM recording ORDER BY id DESC").fetchall()
         notes = c.execute("SELECT id, day, kind, text, auto_score, paz_level FROM writing ORDER BY id DESC LIMIT 5").fetchall()
         flags = c.execute("SELECT * FROM hint_flag ORDER BY id DESC LIMIT 30").fetchall()
+        in_use = pictures_in_use()
+        pic_flags = [dict(r) for r in c.execute(
+            "SELECT item_id, label, picture, COUNT(*) n, MAX(ts) last FROM picture_flag "
+            "GROUP BY item_id, picture ORDER BY last DESC")
+            if r["picture"] in in_use]  # flags on pictures already replaced drop off
         auto = json.loads(p["levels_json"]) if p and p["levels_json"] else None
         override = json.loads(p["override_json"]) if p and p["override_json"] else None
         levels = scoring.final_levels(auto, override) if auto else None
@@ -489,7 +511,7 @@ def create_app(db_path=None, content_root=None):
                        "outlook_pass": scoring.exam_outlook(levels) if levels else None,
                        "finished": p["finished_at"] if p else None} if p else None,
             recordings=[dict(r) for r in recs], writings=[dict(r) for r in notes],
-            hint_flags=[dict(r) for r in flags], streak=streak.current_streak(active_days(), t),
+            hint_flags=[dict(r) for r in flags], picture_flags=pic_flags, streak=streak.current_streak(active_days(), t),
             api_usage=usage.this_month(c, t), api_budget_eur=float(config.get("MONTHLY_BUDGET_EUR", 25)))
 
     @app.post("/api/paz/override")

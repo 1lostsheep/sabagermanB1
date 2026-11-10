@@ -26,7 +26,8 @@ A local German-learning app for **Saba**, so she passes the **DTZ at B1**. Paz b
 - **Piper** stays as the free offline fallback (`TTS_ENGINE=piper`) and is the planned live voice for the Phase 2 speaking partner.
 - The engines are in `tools/tts.py`; `tools/voice_samples.py` lets Saba compare voices.
 - Content is written by **Claude Code** through `/new-month`, then validated and rendered by `tools/build_batch.py`. It does not go through the API.
-- Pictures are OpenMoji (CC BY-SA 4.0). Keep `LICENSES.md` up to date whenever a new media source is added.
+- Pictures are **ARASAAC** pictograms (free, CC BY-NC-SA, made for language learners; Paz's choice on 10 Nov 2026), written as `"picture": "arasaac:<id>"`. Find ids with `.venv/bin/python tools/arasaac.py <German word>` and **look at the candidates** before choosing; prefer colourful pictures that show the situation. OpenMoji hexcodes still work as a fallback. Keep `LICENSES.md` up to date whenever a new media source is added.
+- Saba (and Paz) can flag a picture as "not clear" with the 🚩 under it. Flags show on Paz's page. `/new-month` replaces flagged pictures.
 
 ## Design rules for Saba (most important)
 1. Explanations are in **very simple English (A2)**, with an **icon** next to every instruction.
@@ -53,7 +54,7 @@ A local German-learning app for **Saba**, so she passes the **DTZ at B1**. Paz b
   - `content.py`: loading and validating content.
 - `web/`: `index.html`, `css/app.css`, `js/main.js` (router), and `js/screens/*.js` with one module per screen.
 - `content/FORMAT.md`: **the content JSON spec**. Read it before touching content.
-- `tools/build_batch.py`: validates a batch, fetches OpenMoji SVGs and renders audio (via `tools/tts.py`: Google or Piper).
+- `tools/build_batch.py`: validates a batch, fetches pictures (ARASAAC) and renders audio (via `tools/tts.py`: Google or Piper).
 - `launcher/`: the desktop file, the systemd user service and `launch.sh`.
 - `tests/`: pytest.
 
