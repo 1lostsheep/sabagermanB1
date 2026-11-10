@@ -29,6 +29,8 @@ OPENMOJI_URL = "https://raw.githubusercontent.com/hfg-gmuend/openmoji/{tag}/colo
 
 
 def fetch_pictures(codes, force=False):
+    """Download missing OpenMoji pictures. With force, refresh them, but a failed
+    download never removes a picture that is already there."""
     got = 0
     for code in sorted(codes):
         dest = C.MEDIA / C.picture_rel(code)
@@ -36,12 +38,17 @@ def fetch_pictures(codes, force=False):
             continue
         dest.parent.mkdir(parents=True, exist_ok=True)
         url = OPENMOJI_URL.format(tag=OPENMOJI_TAG, code=code)
+        tmp = dest.with_suffix(".part")
         try:
-            _download(url, dest)
+            _download(url, tmp)
+            tmp.replace(dest)
             got += 1
         except Exception as e:
-            log(f"  ! picture {code} not found ({e}). Pick another hexcode on openmoji.org")
-            dest.unlink(missing_ok=True)
+            tmp.unlink(missing_ok=True)
+            if dest.exists():
+                log(f"  (could not refresh picture {code}: {e}; keeping the old one)")
+            else:
+                log(f"  ! picture {code} not found ({e}). Pick another hexcode on openmoji.org")
     return got
 
 
@@ -70,7 +77,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("batch", nargs="?", help="batch id like 2026-11, 'all', or 'placement'")
     ap.add_argument("--check", action="store_true", help="validate only (also checks media exists)")
-    ap.add_argument("--force", action="store_true", help="re-render audio and re-fetch pictures")
+    ap.add_argument("--force", action="store_true", help="re-record all audio (pictures are only fetched when missing)")
     ap.add_argument("--voices-only", action="store_true", help="download the Piper voices and stop")
     ap.add_argument("--engine", choices=["google", "piper"], help="override TTS_ENGINE from .env")
     ap.add_argument("--no-placement", action="store_true")
@@ -94,7 +101,7 @@ def main():
             ok = False
             continue
         if not args.check:
-            n = fetch_pictures(C.pictures_of_batch(batch), args.force)
+            n = fetch_pictures(C.pictures_of_batch(batch))
             log(f"  pictures fetched: {n}")
             n = render_audio(C.audio_jobs(batch), args.force, args.engine)
             log(f"  audio rendered: {n}")
@@ -118,7 +125,7 @@ def main():
                 ok = False
             else:
                 if not args.check:
-                    fetch_pictures(C.pictures_of_placement(p), args.force)
+                    fetch_pictures(C.pictures_of_placement(p))
                     render_audio(C.placement_audio_jobs(p), args.force, args.engine)
                 ok &= report("placement (media)", C.validate_placement(p, check_media=True))
     sys.exit(0 if ok else 1)
