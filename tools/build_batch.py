@@ -7,6 +7,7 @@
     .venv/bin/python tools/build_batch.py --voices-only    # just download the Piper voices
     add --force to re-render audio that already exists
     add --engine google|piper to override TTS_ENGINE from .env
+    add --upgrade-piper to re-record only the files made with Piper (see content/media/audio/engines.json)
 
 Voices: TTS_ENGINE in .env picks Google (natural, needs GOOGLE_TTS_API_KEY) or Piper
 (free, offline). See tools/tts.py and tools/voice_samples.py.
@@ -15,6 +16,7 @@ Safe to re-run: only missing files are created.
 Needs: ffmpeg; for Piper also pip install -r requirements-content.txt.
 """
 import argparse
+import json
 import sys
 from pathlib import Path
 
@@ -54,14 +56,33 @@ def fetch_pictures(codes, force=False):
     return got
 
 
-def render_audio(jobs, force=False, engine_name=None):
-    todo = [(p, lines) for p, lines in jobs if force or not (C.MEDIA / p).exists()]
+ENGINES_FILE = C.MEDIA / "audio" / "engines.json"  # which voice engine made each audio file
+
+
+def _engines() -> dict:
+    return json.loads(ENGINES_FILE.read_text(encoding="utf-8")) if ENGINES_FILE.exists() else {}
+
+
+def _save_engines(data: dict):
+    ENGINES_FILE.parent.mkdir(parents=True, exist_ok=True)
+    ENGINES_FILE.write_text(json.dumps(dict(sorted(data.items())), indent=0) + "\n", encoding="utf-8")
+
+
+def render_audio(jobs, force=False, engine_name=None, upgrade_from=None):
+    """Render missing audio. force: all of it. upgrade_from='piper': also files made with Piper."""
+    made_by = _engines()
+    todo = [(p, lines) for p, lines in jobs
+            if force or not (C.MEDIA / p).exists() or (upgrade_from and made_by.get(p) == upgrade_from)]
     if not todo:
         return 0
     engine = tts.make_engine(engine_name)
     for n, (p, lines) in enumerate(todo, 1):
         log(f"  [{n}/{len(todo)}] {p}")
         engine.render(lines, C.MEDIA / p)
+        made_by[p] = engine.name
+        if n % 20 == 0:
+            _save_engines(made_by)
+    _save_engines(made_by)
     return len(todo)
 
 
@@ -82,6 +103,8 @@ def main():
     ap.add_argument("--force", action="store_true", help="re-record all audio (pictures are only fetched when missing)")
     ap.add_argument("--voices-only", action="store_true", help="download the Piper voices and stop")
     ap.add_argument("--engine", choices=["google", "piper"], help="override TTS_ENGINE from .env")
+    ap.add_argument("--upgrade-piper", action="store_true",
+                    help="re-record audio that was made with Piper (e.g. after it was added without a Google key)")
     ap.add_argument("--no-placement", action="store_true")
     args = ap.parse_args()
 
@@ -105,7 +128,7 @@ def main():
         if not args.check:
             n = fetch_pictures(C.pictures_of_batch(batch))
             log(f"  pictures fetched: {n}")
-            n = render_audio(C.audio_jobs(batch), args.force, args.engine)
+            n = render_audio(C.audio_jobs(batch), args.force, args.engine, "piper" if args.upgrade_piper else None)
             log(f"  audio rendered: {n}")
         ok &= report(f"batch {bid} (media)", C.validate_batch(batch, check_media=True))
 
@@ -128,7 +151,7 @@ def main():
             else:
                 if not args.check:
                     fetch_pictures(C.pictures_of_placement(p))
-                    render_audio(C.placement_audio_jobs(p), args.force, args.engine)
+                    render_audio(C.placement_audio_jobs(p), args.force, args.engine, "piper" if args.upgrade_piper else None)
                 ok &= report("placement (media)", C.validate_placement(p, check_media=True))
     sys.exit(0 if ok else 1)
 
