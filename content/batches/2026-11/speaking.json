@@ -2,7 +2,7 @@
   {"id": "s-name", "topic": "about_me", "de": "Ich heiße Saba Schmitz.", "en": "My name is Saba Schmitz.", "hint_am": "ስሜ ሳባ ሽሚትዝ ነው።"},
   {"id": "s-herkunft", "topic": "about_me", "de": "Ich komme aus Äthiopien.", "en": "I come from Ethiopia.", "hint_am": "የመጣሁት ከኢትዮጵያ ነው።"},
   {"id": "s-wohnort", "topic": "about_me", "de": "Ich wohne seit 2024 in Mönchengladbach.", "say": "Ich wohne seit zweitausendvierundzwanzig in Mönchengladbach.", "en": "I have lived in Mönchengladbach since 2024.", "hint_am": "ከ2024 ጀምሮ በሙንሽንግላድባህ እኖራለሁ።"},
-  {"id": "s-familie", "topic": "about_me", "de": "Ich bin verheiratet und habe zwei Kinder.", "en": "I am married and I have two children.", "hint_am": "ባለትዳር ነኝ፣ ሁለት ልጆችም አሉኝ።"},
+  {"id": "s-familie", "topic": "about_me", "de": "Ich bin verheiratet und habe drei Kinder.", "en": "I am married and I have three children.", "hint_am": "ባለትዳር ነኝ፣ ሶስት ልጆችም አሉኝ።"},
   {"id": "s-sprachen", "topic": "about_me", "de": "Ich spreche Amharisch, Englisch und ein bisschen Deutsch.", "en": "I speak Amharic, English and a little German.", "hint_am": "አማርኛ፣ እንግሊዝኛ እና ትንሽ ጀርመንኛ እናገራለሁ።"},
   {"id": "s-alltag", "topic": "about_me", "de": "Am Morgen bringe ich die Kinder zur Schule.", "en": "In the morning I take the children to school.", "hint_am": "ጠዋት ልጆቹን ወደ ትምህርት ቤት እወስዳለሁ።"},
   {"id": "s-hobby", "topic": "about_me", "de": "In meiner Freizeit koche ich gern.", "en": "In my free time I like cooking.", "hint_am": "በትርፍ ጊዜዬ ምግብ ማብሰል እወዳለሁ።"},

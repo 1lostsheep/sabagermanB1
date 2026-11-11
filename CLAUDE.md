@@ -10,9 +10,11 @@ A local German-learning app for **Saba**, so she passes the **DTZ at B1**. Paz b
 
 ## Family (use these real names in content)
 - **Saba Schmitz**: the learner. She is married to Paz (Pascal Schmitz) and lives in Mönchengladbach.
-- **Phillip Schmitz**: son, in Klasse 12.
-- **Amariam Schmitz**: daughter, in Klasse 8.
-- Both children are at secondary school, so school content should be about secondary school (Elternsprechtag, Klassenfahrt, Zeugnis, Entschuldigung), not primary school.
+- Saba has **three children**:
+  - **Marcus Schmitz**: son, 20 (finished school).
+  - **Phillip Schmitz**: son, 18, in Klasse 12.
+  - **Amariam Schmitz**: daughter, 13, in Klasse 8.
+- The two younger ones are at secondary school, so school content should be about secondary school (Elternsprechtag, Klassenfahrt, Zeugnis, Entschuldigung), not primary school. Parent letters to school are mostly about Amariam.
 
 ## Fixed decisions (ask Paz before changing any of these)
 - Target machine: an Ubuntu 24.04 LTS laptop. Linux first, but keep it portable to Windows (no Linux-only code in `app/`).

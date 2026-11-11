@@ -51,7 +51,7 @@ You are preparing a new monthly content batch for Saba's German B1 Coach. Argume
   - an ARASAAC picture (`"arasaac:<id>"`). Search with `.venv/bin/python tools/arasaac.py <word>`, **look at the candidates** (open `https://static.arasaac.org/pictograms/<id>/<id>_300.png`), and choose the one where the meaning is obvious without the word;
   - an example sentence whose `blocks` have the action word in slot 2.
 - Numbers, times and abbreviations go in `say`, written out the way they are spoken.
-- Use the family names listed in CLAUDE.md (Saba, Phillip in Klasse 12, Amariam in Klasse 8).
+- Use the family listed in CLAUDE.md: Saba has three children (Marcus 20, Phillip 18 in Klasse 12, Amariam 13 in Klasse 8).
 
 ## 4. Build and check
 ```bash
