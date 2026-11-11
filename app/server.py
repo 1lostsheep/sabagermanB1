@@ -184,12 +184,23 @@ def create_app(db_path=None, content_root=None):
             "active_days": sorted(d.isoformat() for d in days),
         }
 
+    GOAL_STEP, GOAL_MAX = 5, 75
+
     def goal_minutes() -> int:
-        """Daily learning goal in minutes. Paz sets it on his page (default 30)."""
+        """Daily learning goal: starts at goal_base (default 30) in the week of goal_start
+        and rises by 5 minutes every Monday until 75 (Paz's rule, 11 Nov 2026)."""
+        t = today()
+        monday = t - timedelta(days=t.weekday())
+        start = db.get_setting(conn(), "goal_start")
+        if not start:
+            start = monday.isoformat()
+            db.set_setting(conn(), "goal_start", start)
         try:
-            return max(5, min(180, int(db.get_setting(conn(), "goal_minutes", 30))))
+            base = int(db.get_setting(conn(), "goal_base", 30))
         except (TypeError, ValueError):
-            return 30
+            base = 30
+        weeks = max(0, (monday - date.fromisoformat(start)).days // 7)
+        return max(5, min(GOAL_MAX, base + GOAL_STEP * weeks))
 
     # ---------------- pages and files ----------------
 
@@ -569,8 +580,10 @@ def create_app(db_path=None, content_root=None):
             abort(400)
         if not 5 <= minutes <= 180:
             abort(400)
-        db.set_setting(conn(), "goal_minutes", minutes)
-        return jsonify(ok=True, goal_minutes=minutes)
+        t = today()
+        db.set_setting(conn(), "goal_base", minutes)  # from this week, still +5 every Monday up to 75
+        db.set_setting(conn(), "goal_start", (t - timedelta(days=t.weekday())).isoformat())
+        return jsonify(ok=True, goal_minutes=goal_minutes())
 
     @app.get("/api/paz/recording/<int:rec_id>")
     @paz_required

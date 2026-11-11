@@ -148,3 +148,15 @@ def test_daily_goal_and_extra_practice_time(client):
     assert client.post("/api/paz/goal", json={"minutes": 2}).status_code == 400
     assert client.post("/api/paz/goal", json={"minutes": 45}).get_json()["goal_minutes"] == 45
     assert client.get("/api/state").get_json()["goal_minutes"] == 45
+
+
+def test_goal_rises_5_minutes_each_week_up_to_75(client, monkeypatch):
+    assert client.get("/api/state").get_json()["goal_minutes"] == 30       # Mon 9 Nov: week 1
+    monkeypatch.setenv("COACH_TODAY", "2026-11-15")                          # Sunday, same week
+    assert client.get("/api/state").get_json()["goal_minutes"] == 30
+    monkeypatch.setenv("COACH_TODAY", "2026-11-16")                          # next Monday
+    assert client.get("/api/state").get_json()["goal_minutes"] == 35
+    monkeypatch.setenv("COACH_TODAY", "2026-12-21")                          # 6 weeks later
+    assert client.get("/api/state").get_json()["goal_minutes"] == 60
+    monkeypatch.setenv("COACH_TODAY", "2027-03-01")
+    assert client.get("/api/state").get_json()["goal_minutes"] == 75        # capped
