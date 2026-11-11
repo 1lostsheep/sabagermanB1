@@ -47,6 +47,16 @@ export async function render(root) {
 
   screen(root, h("div", { class: "paz", style: "display:flex;flex-direction:column;gap:16px" },
     h("h1", {}, "Weekly summary"),
+    (() => {
+      const inp = h("input", { type: "text", inputmode: "numeric", value: String(d.goal_minutes), style: "width:5em" });
+      const msg = h("span", { class: "muted" });
+      return h("div", { class: "card" }, h("b", {}, "Daily goal for Saba: "), inp, " minutes ",
+        h("button", { class: "btn", onclick: async () => {
+          try { await api.post("/api/paz/goal", { minutes: Number(inp.value) }); msg.textContent = " Saved ✓"; }
+          catch { msg.textContent = " Use a number from 5 to 180."; }
+        } }, "Save"), msg,
+        h("div", { class: "muted" }, "Tip: raise it by 5–10 minutes a week towards 60–75 minutes (the plan in the README)."));
+    })(),
     h("div", { class: "muted" }, `7 days up to ${d.today}`),
     h("div", { class: "grid" },
       kpi(d.minutes_week + " min", "studied this week"),

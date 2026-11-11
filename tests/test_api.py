@@ -135,3 +135,16 @@ def test_picture_flag_shows_on_paz_page_until_replaced(client):
     client.post("/api/paz/login", json={"pin": "4321"})
     flags = client.get("/api/paz/summary").get_json()["picture_flags"]
     assert len(flags) == 1 and flags[0]["item_id"] == w["id"] and flags[0]["n"] == 2
+
+
+def test_daily_goal_and_extra_practice_time(client):
+    finish_placement(client)
+    s = client.get("/api/state").get_json()
+    assert s["goal_minutes"] == 30 and s["minutes_today"] == 0
+    r = client.post("/api/time", json={"seconds": 600}).get_json()
+    assert r["minutes_today"] == 10
+    assert client.post("/api/paz/goal", json={"minutes": 45}).status_code == 401
+    client.post("/api/paz/login", json={"pin": "4321"})
+    assert client.post("/api/paz/goal", json={"minutes": 2}).status_code == 400
+    assert client.post("/api/paz/goal", json={"minutes": 45}).get_json()["goal_minutes"] == 45
+    assert client.get("/api/state").get_json()["goal_minutes"] == 45

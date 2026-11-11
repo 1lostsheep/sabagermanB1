@@ -2,7 +2,7 @@
 import { api } from "../api.js";
 import { go } from "../main.js";
 import { S } from "../strings.js";
-import { button, celebrate, ctx, h, hint, say, screen, t, updateCounters } from "../ui.js";
+import { button, celebrate, ctx, goalBar, h, hint, say, screen, t, updateCounters } from "../ui.js";
 
 const BLOCKS = {
   review: () => import("../blocks/review.js"),
@@ -47,11 +47,17 @@ export async function render(root, params) {
   updateCounters(state);
   const s2 = state.sittings && state.sittings[2];
   const rest = sitting === 1 && s2 && s2.blocks && s2.done < s2.blocks;
-  const msg = rest ? S.breakTime : S.allDone;
-  screen(root, h("div", { class: "celebrate" }, h("div", { class: "big-ico" }, msg.icon),
-      h("h1", {}, t(S.wellDone)), h("h2", {}, msg.en), hint(msg.am)),
+  const msg = rest ? S.breakTime
+    : state.minutes_today >= state.goal_minutes ? S.goalDone : S.partsDone;
+  const left = state.goal_minutes - state.minutes_today;
+  const box = screen(root, h("div", { class: "celebrate" }, h("div", { class: "big-ico" }, msg.icon),
+      h("h1", {}, t(S.wellDone)), h("h2", {}, t(msg)), hint(msg.am)),
     h("div", { class: "stat-row" },
       h("div", { class: "stat" }, h("div", { class: "num" }, "🔥 " + state.streak), h("div", { class: "lbl" }, S.streakLabel.en)),
       h("div", { class: "stat" }, h("div", { class: "num" }, "⭐ " + state.words_known), h("div", { class: "lbl" }, S.knownLabel.en))),
-    button(S.home, () => go(""), "primary"));
+    goalBar(state.minutes_today, state.goal_minutes));
+  const bar = h("div", { class: "actions" });
+  if (!rest && left > 0) bar.append(button({ ...S.keepGoing, en: t(S.keepGoing, { left }) }, () => go("practice"), "primary"));
+  bar.append(button(S.home, () => go(""), !rest && left > 0 ? "" : "primary"));
+  box.append(bar);
 }

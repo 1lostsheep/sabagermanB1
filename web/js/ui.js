@@ -218,6 +218,15 @@ export async function celebrate(root, s, vars, ms = 1600) {
   await wait(ms);
 }
 
+/** "⏱️ 12 / 30 minutes today" with a bar. */
+export function goalBar(minutes, goal) {
+  const pct = Math.min(100, Math.round((100 * minutes) / Math.max(goal, 1)));
+  return h("div", { class: "goal" },
+    h("div", { class: "goal-txt" }, `⏱️ ${minutes} / ${goal} `, S.goalLabel.en, " ", hint(S.goalLabel.am),
+      minutes >= goal ? " 🎯" : ""),
+    h("div", { class: "goal-track" }, h("div", { class: "goal-fill", style: `width:${pct}%` })));
+}
+
 export function updateCounters({ streak, words_known }) {
   if (streak !== undefined) document.querySelector("#streak b").textContent = streak;
   if (words_known !== undefined) document.querySelector("#known b").textContent = words_known;

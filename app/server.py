@@ -180,8 +180,16 @@ def create_app(db_path=None, content_root=None):
             "words_known": srs.words_known(cards),
             "words_learned": len(cards),
             "minutes_today": round((row["seconds"] if row else 0) / 60),
+            "goal_minutes": goal_minutes(),
             "active_days": sorted(d.isoformat() for d in days),
         }
+
+    def goal_minutes() -> int:
+        """Daily learning goal in minutes. Paz sets it on his page (default 30)."""
+        try:
+            return max(5, min(180, int(db.get_setting(conn(), "goal_minutes", 30))))
+        except (TypeError, ValueError):
+            return 30
 
     # ---------------- pages and files ----------------
 
@@ -262,6 +270,15 @@ def create_app(db_path=None, content_root=None):
         c.commit()
         return jsonify(ok=True, sittings=sitting_status(plan, done), **progress_numbers())
 
+    @app.post("/api/time")
+    def add_time():
+        """Time spent outside the planned blocks (extra practice) counts towards today's minutes."""
+        seconds = max(0, min(int(body().get("seconds", 0)), 60 * 60))
+        get_or_build_plan(today())
+        conn().execute("UPDATE lesson_day SET seconds = seconds + ? WHERE day = ?", (seconds, today().isoformat()))
+        conn().commit()
+        return jsonify(ok=True, **progress_numbers())
+
     @app.post("/api/words/learned")
     def words_learned():
         """Called at the end of 'New words': the words go into the flashcard deck."""
@@ -288,7 +305,19 @@ def create_app(db_path=None, content_root=None):
             rest = [c.word_id for c in cards if c.word_id not in ids]
             random.shuffle(rest)
             ids += rest[: 10 - len(ids)]
-        return jsonify(cards=with_distractors(ids))
+        # one more activity for variety: a listening, reading or task she has already done
+        cont = content()
+        done = [cont["by_id"][cid] for cid in used_map() if cid in cont["by_id"]
+                and cid.startswith(("l-", "r-", "t-"))]
+        extra = None
+        if done:
+            it = random.choice(done)
+            extra = {"type": {"l": "listening", "r": "reading", "t": "task"}[it["id"][0]], "item": item_view(it)}
+        # a sentence to build from a word she has met
+        met = [cont["by_id"][c.word_id] for c in cards if c.word_id in cont["by_id"]]
+        with_blocks = [w for w in met if (w.get("example") or {}).get("blocks")]
+        sentence = word_view(random.choice(with_blocks))["example"] if with_blocks else None
+        return jsonify(cards=with_distractors(ids), extra=extra, sentence=sentence)
 
     @app.post("/api/review")
     def review_answer():
@@ -512,7 +541,8 @@ def create_app(db_path=None, content_root=None):
                        "finished": p["finished_at"] if p else None} if p else None,
             recordings=[dict(r) for r in recs], writings=[dict(r) for r in notes],
             hint_flags=[dict(r) for r in flags], picture_flags=pic_flags, streak=streak.current_streak(active_days(), t),
-            api_usage=usage.this_month(c, t), api_budget_eur=float(config.get("MONTHLY_BUDGET_EUR", 25)))
+            api_usage=usage.this_month(c, t), api_budget_eur=float(config.get("MONTHLY_BUDGET_EUR", 25)),
+            goal_minutes=goal_minutes())
 
     @app.post("/api/paz/override")
     @paz_required
@@ -529,6 +559,18 @@ def create_app(db_path=None, content_root=None):
         conn().execute("UPDATE assessment SET override_json=? WHERE id=?", (json.dumps(ov), p["id"]))
         conn().commit()
         return jsonify(ok=True)
+
+    @app.post("/api/paz/goal")
+    @paz_required
+    def paz_goal():
+        try:
+            minutes = int(body().get("minutes"))
+        except (TypeError, ValueError):
+            abort(400)
+        if not 5 <= minutes <= 180:
+            abort(400)
+        db.set_setting(conn(), "goal_minutes", minutes)
+        return jsonify(ok=True, goal_minutes=minutes)
 
     @app.get("/api/paz/recording/<int:rec_id>")
     @paz_required

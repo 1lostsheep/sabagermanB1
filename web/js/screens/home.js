@@ -1,7 +1,7 @@
 import { api } from "../api.js";
 import { go } from "../main.js";
 import { S } from "../strings.js";
-import { button, ctx, h, hint, say, screen, t, updateCounters } from "../ui.js";
+import { button, ctx, goalBar, h, hint, say, screen, t, updateCounters } from "../ui.js";
 
 export async function render(root) {
   const s = await api.get("/api/state");
@@ -43,7 +43,14 @@ export async function render(root) {
       parts.push(b);
     }
     const all = [1, 2].every((n) => !s.sittings[n].blocks || s.sittings[n].done >= s.sittings[n].blocks);
-    if (all) parts.unshift(say(S.allDone));
+    if (all) {
+      if (s.minutes_today >= s.goal_minutes) parts.unshift(say(S.goalDone));
+      else {
+        parts.unshift(say(S.partsDone));
+        parts.push(button({ ...S.keepGoing, en: t(S.keepGoing, { left: s.goal_minutes - s.minutes_today }) },
+          () => go("practice"), "primary huge"));
+      }
+    }
   }
-  screen(root, hello, stats, ...parts, more);
+  screen(root, hello, stats, goalBar(s.minutes_today, s.goal_minutes), ...parts, more);
 }

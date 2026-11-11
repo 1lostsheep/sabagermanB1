@@ -175,6 +175,12 @@ h2 { font-size: 1.3rem; margin: 0; }
 .sit-done { opacity: .6; }
 .btn.primary .muted { color: rgba(255, 255, 255, .85); }
 
+/* daily time goal */
+.goal { display: flex; flex-direction: column; gap: 0.6vh; background: var(--card); border: 2px solid var(--line); border-radius: var(--radius); padding: 1vh 1.2vw; }
+.goal-txt { font-size: 1.1rem; display: flex; align-items: center; gap: 0.4vw; flex-wrap: wrap; }
+.goal-track { height: 1.6vh; min-height: 10px; background: var(--soft); border-radius: 999px; overflow: hidden; }
+.goal-fill { height: 100%; background: var(--good); border-radius: 999px; transition: width .4s; }
+
 /* reading */
 .paper { background: #fffdf7; color: #2b2620; border: 2px solid var(--line); border-radius: 12px; padding: 1.4vh 1.4vw; font-size: 1.05rem; white-space: pre-wrap; box-shadow: var(--shadow); -webkit-user-select: text; user-select: text; }
 .paper h3 { margin: 0 0 0.8vh; }
