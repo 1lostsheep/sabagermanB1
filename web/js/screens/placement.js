@@ -3,7 +3,7 @@ import { api } from "../api.js";
 import { player, stopAll } from "../audio.js";
 import { go, refreshCounters } from "../main.js";
 import { S } from "../strings.js";
-import { button, celebrate, choiceCell, h, hint, picture, say, screen, steps, t, wait } from "../ui.js";
+import { actionBar, button, celebrate, choiceCell, h, hint, picture, say, screen, split, steps, t, wait } from "../ui.js";
 
 const SECTION_TITLE = { words: S.secWords, listening: S.secListening, reading: S.secReading,
                         speaking: S.secSpeaking, writing: S.secWriting };
@@ -83,8 +83,8 @@ async function words(root, sec, prog, save) {
     const it = sec.items[prog.item];
     const box = screen(root, steps(prog.item + 1, sec.items.length), say(S.tapPicture),
       player(it.audio, { autoplay: true, compact: true }));
-    const pending = chooseOnce(box, it.pictures.map((p, i) => picture(p, "", { item: `${it.id}:${i + 1}`, label: `${it.de} (picture ${i + 1})` })), { columns: 2, cls: "pic" });
-    box.append(pauseButton());
+    const pending = chooseOnce(box, it.pictures.map((p, i) => picture(p, "", { item: `${it.id}:${i + 1}`, label: `${it.de} (picture ${i + 1})` })), { columns: 4, cls: "pic" });
+    actionBar(box).append(pauseButton());
     const chosen = await pending;
     await answer(it.id, "words", it.level, chosen, it.answer, { ...prog, item: prog.item + 1 });
   }
@@ -95,16 +95,18 @@ async function questionsSection(root, sec, prog, save, kind) {
     const it = sec.items[prog.item];
     for (let qi = 0; qi < it.questions.length; qi++) {
       const q = it.questions[qi];
-      const parts = [steps(prog.item + 1, sec.items.length)];
+      const question = h("div", {}, h("h2", { lang: "de" }, "❓ " + q.q_de), h("div", { class: "muted" }, q.q_en));
+      let box;
       if (kind === "listening") {
-        parts.push(say(S.listeningIntro), player(it.audio, { autoplay: qi === 0, rate: 1 }));
+        box = screen(root, steps(prog.item + 1, sec.items.length), say(S.listeningIntro),
+          player(it.audio, { autoplay: qi === 0, rate: 1, compact: true }), question);
       } else {
-        parts.push(say(S.readText), h("div", { class: "paper", lang: "de" }, h("h3", {}, it.title_de), it.text_de));
+        box = h("div", {}, question);
+        screen(root, steps(prog.item + 1, sec.items.length), say(S.readText),
+          split(h("div", { class: "paper", lang: "de" }, h("h3", {}, it.title_de), it.text_de), box));
       }
-      parts.push(h("h2", { lang: "de" }, "❓ " + q.q_de), h("div", { class: "muted" }, q.q_en));
-      const box = screen(root, ...parts);
       const pending = chooseOnce(box, q.options);
-      box.append(pauseButton());
+      actionBar(box).append(pauseButton());
       const chosen = await pending;
       const last = qi === it.questions.length - 1;
       await answer(`${it.id}-q${qi + 1}`, kind, it.level, chosen, q.answer,
@@ -189,10 +191,11 @@ async function record(root, sec) {
 function writing(root, sec) {
   return new Promise((resolve) => {
     const ta = h("textarea", { lang: "de", spellcheck: "false", placeholder: "Liebe Frau Becker, ..." });
-    screen(root, say(S.writeNote),
+    const box = screen(root, say(S.writeNote),
       h("div", { class: "instruction" }, h("span", { class: "ico" }, "✉️"),
         h("span", { class: "txt" }, sec.task_en, h("br"), h("i", { lang: "de" }, sec.task_de)), hint(sec.hint_am, "placement-writing")),
-      ta, button(S.done, () => resolve(ta.value.trim()), "primary"));
+      ta);
+    actionBar(box).append(button(S.done, () => resolve(ta.value.trim()), "primary"));
     ta.focus();
   });
 }

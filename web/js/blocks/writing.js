@@ -3,13 +3,13 @@
 import { api } from "../api.js";
 import { player } from "../audio.js";
 import { S } from "../strings.js";
-import { button, choose, h, hint, nextButton, say, screen, steps } from "../ui.js";
+import { actionBar, button, choose, h, hint, nextButton, say, screen, split, steps } from "../ui.js";
 
 const ROLE_LABEL = { greeting: "👋 Hello", reason: "❓ Why", point: "📌 Point", closing: "🙏 Goodbye", name: "✍️ Name" };
 
 function letterView(it, { gaps = [], filled = new Set(), showEn = true, current = -1 } = {}) {
   let pointNo = 0;
-  return h("div", { class: "paper" }, ...it.lines.map((ln, i) => {
+  return h("div", { class: "paper letter" }, ...it.lines.map((ln, i) => {
     const label = ln.role === "point" ? `📌 ${++pointNo}` : ROLE_LABEL[ln.role];
     let text = ln.de;
     const gap = gaps.find((g) => g.line === i);
@@ -35,27 +35,28 @@ export async function run(root, block) {
       h("div", { class: "gloss-item" }, `📌 ${i + 1}`, h("b", { lang: "de" }, p.de), " = ", p.en))));
   await nextButton(box);
   // 2. the model letter with audio
-  box = screen(root, say({ icon: "👀", en: "Look at the letter. Listen.", am: "ደብዳቤውን ተመልከቺ። አዳምጪ።" }),
-    player(it.audio, { compact: true }), letterView(it));
+  box = screen(root, split(letterView(it),
+    [say({ icon: "👀", en: "Look at the letter. Listen.", am: "ደብዳቤውን ተመልከቺ። አዳምጪ።" }), player(it.audio), say(S.letterRecipe)]));
   await nextButton(box);
   // 3. fill the gaps
   let score = 0;
   const filled = new Set();
   for (let i = 0; i < it.gaps.length; i++) {
     const g = it.gaps[i];
-    box = screen(root, steps(i + 1, it.gaps.length), say(S.fillGaps),
-      letterView(it, { gaps: it.gaps, filled, showEn: false, current: g.line }));
-    if (await choose(box, g.options, g.options.indexOf(g.word), { columns: Math.min(3, g.options.length) })) score++;
+    const right = h("div", {}, say(S.fillGaps));
+    screen(root, steps(i + 1, it.gaps.length),
+      split(letterView(it, { gaps: it.gaps, filled, showEn: false, current: g.line }), right));
+    if (await choose(right, g.options, g.options.indexOf(g.word))) score++;
     filled.add(g.line);
   }
   api.post("/api/writing", { kind: "fill_in", prompt_id: it.id, auto_score: score }).catch(() => {});
   // 4. free writing: optional now, marked by AI in Phase 2
   await new Promise((resolve) => {
     const ta = h("textarea", { lang: "de", spellcheck: "false", placeholder: it.lines[0].de });
-    screen(root, letterView(it, { gaps: it.gaps, filled, showEn: false }), say(S.writingSoon),
+    const box = screen(root, split(letterView(it, { gaps: it.gaps, filled, showEn: false }), [say(S.writingSoon),
       say({ icon: "✍️", en: "Want to try? Write the letter again here.", am: "መሞከር ትፈልጊያለሽ? ደብዳቤውን እዚህ እንደገና ጻፊ።" }),
-      ta,
-      button(S.done, () => {
+      ta]));
+    actionBar(box).append(button(S.done, () => {
         if (ta.value.trim()) api.post("/api/writing", { kind: "free", prompt_id: it.id, text: ta.value.trim() }).catch(() => {});
         resolve();
       }, "primary"));

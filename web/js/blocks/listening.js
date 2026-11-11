@@ -13,6 +13,6 @@ export async function run(root, block) {
     player(it.audio, { autoplay: true, rate: 1 }));
   await nextButton(box);
   const score = await askQuestions(root, it.questions,
-    () => [player(it.audio, { compact: true })], it.id);
+    () => [player(it.audio, { compact: true })], it.id, { layout: "stack" });
   return { score, max: it.questions.length, content_id: it.id };
 }

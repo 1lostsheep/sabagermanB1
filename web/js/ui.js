@@ -64,6 +64,7 @@ export function button(s, onclick, cls = "") {
 
 export function screen(root, ...children) {
   root.replaceChildren(h("section", { class: "screen" }, ...children));
+  root.classList.toggle("scroll", location.hash.startsWith("#/paz"));  // only Paz's report scrolls
   window.scrollTo(0, 0);
   return root.firstChild;
 }
@@ -80,10 +81,10 @@ export function picture(src, alt = "", flag = null) {
 }
 
 /** Small 🚩 button: flags a picture as not clear. Paz sees it on his page. */
-export function pictureFlag(img) {
+export function pictureFlag(img, { hidden = false } = {}) {
   if (!img || img.tagName !== "IMG" || !img.dataset.flagItem) return null;
   const btn = h("button", {
-    class: "pic-flag", type: "button", title: "This picture is not clear",
+    class: "pic-flag", type: "button", title: "This picture is not clear", hidden,
     onclick: async (e) => {
       e.stopPropagation();
       e.preventDefault();
@@ -98,16 +99,44 @@ export function pictureFlag(img) {
   return btn;
 }
 
-/** A standalone picture with its flag button underneath. */
-export function flaggedPicture(src, alt, flag) {
+/** A standalone picture with its flag button underneath.
+ *  afterAnswer: the flag only shows once the question on this screen is answered. */
+export function flaggedPicture(src, alt, flag, { afterAnswer = false } = {}) {
   const img = picture(src, alt, flag);
-  return h("div", { class: "pic-wrap" }, img, pictureFlag(img));
+  return h("div", { class: "pic-wrap" }, img, pictureFlag(img, { hidden: afterAnswer }));
 }
 
-/** Wrap a choice button so a picture option gets its flag button below (never inside the button). */
+/** Wrap a choice button so a picture option gets its flag button below (never inside the button).
+ *  Flags under answer options stay hidden until the right answer is found. */
 export function choiceCell(btn, opt) {
-  const flag = pictureFlag(opt);
+  const flag = pictureFlag(opt, { hidden: true });
   return flag ? h("div", { class: "pic-opt" }, btn, flag) : btn;
+}
+
+/** Show the hidden 🚩 flags on this screen. Returns true if there are any. */
+export function revealFlags(el) {
+  const scope = (el && el.closest(".screen")) || document;
+  const flags = [...scope.querySelectorAll(".pic-flag")];
+  flags.forEach((f) => (f.hidden = false));
+  return flags.length > 0;
+}
+
+/** Two columns on a wide screen: material on the left, the task on the right. */
+export function split(left, right) {
+  return h("div", { class: "split" },
+    h("div", { class: "col col-left" }, ...[].concat(left)),
+    h("div", { class: "col col-right" }, ...[].concat(right)));
+}
+
+/** The bar at the bottom of the screen that holds Next/Done, so it is always visible. */
+export function actionBar(el) {
+  const scr = (el && el.closest(".screen")) || el;
+  let bar = scr.querySelector(":scope > .actions");
+  if (!bar) {
+    bar = h("div", { class: "actions" });
+    scr.append(bar);
+  }
+  return bar;
 }
 
 /** Article colour class: der blue, die purple, das green. */
@@ -147,9 +176,15 @@ export function choose(container, options, answer, { columns = 1, cls = "" } = {
           if (i === answer) {
             buttons.forEach((b) => (b.disabled = true));
             buttons[i].classList.add("right");
+            buttons[i].classList.remove("show-right");
             msg.className = "feedback good";
             msg.textContent = (wrong === 0 ? "🎉 " + praiseWord() : "👍 " + "Yes, that's it!");
-            await wait(900);
+            if (revealFlags(container)) {
+              // pictures on screen: stay here so a picture can be flagged, then tap Next
+              await nextButton(container);
+            } else {
+              await wait(900);
+            }
             resolve(wrong === 0);
           } else {
             wrong++;
@@ -188,7 +223,7 @@ export function updateCounters({ streak, words_known }) {
   if (words_known !== undefined) document.querySelector("#known b").textContent = words_known;
 }
 
-/** Wait for one tap on a big "Next" button. */
+/** Wait for one tap on a big "Next" button (in the screen's bottom action bar). */
 export function nextButton(container, s = S.next) {
-  return new Promise((resolve) => container.append(button(s, () => resolve(), "primary")));
+  return new Promise((resolve) => actionBar(container).append(button(s, () => resolve(), "primary")));
 }

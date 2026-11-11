@@ -1,6 +1,6 @@
 // Small real-life task: read a note, choose a reply, or fill in a form.
 import { S } from "../strings.js";
-import { h, hint, say, screen, button, wait } from "../ui.js";
+import { actionBar, button, h, hint, say, screen, split, wait } from "../ui.js";
 import { askQuestions, paper } from "./common.js";
 
 function matches(given, expected) {
@@ -40,8 +40,9 @@ async function fillForm(root, it) {
         msg.textContent = S.tryAgain.icon + " " + S.tryAgain.en;
       }
     }, "primary");
-    screen(root, say(S.fillForm), h("div", { class: "muted" }, it.prompt_en), paper(it.material_title, it.material_de),
-      ...fields, msg, check);
+    const box = screen(root, say(S.fillForm),
+      split([h("div", { class: "muted" }, it.prompt_en), paper(it.material_title, it.material_de)], [...fields, msg]));
+    actionBar(box).append(check);
   });
 }
 

@@ -1,7 +1,7 @@
 // Saba's progress: streak calendar, words I know, minutes. Only praise.
 import { api } from "../api.js";
 import { S } from "../strings.js";
-import { h, hint, say, screen } from "../ui.js";
+import { h, hint, say, screen, split } from "../ui.js";
 
 const DAYS = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
 
@@ -26,9 +26,9 @@ export async function render(root) {
   const stat = (num, s) => h("div", { class: "stat" }, h("div", { class: "num" }, `${s.icon} ${num}`),
     h("div", { class: "lbl" }, s.en, " ", hint(s.am)));
   screen(root, h("h1", {}, "📈 ", S.myProgress.en),
-    h("div", { class: "stat-row" }, stat(p.streak, S.streakLabel), stat(p.words_known, S.knownLabel)),
-    h("div", { class: "stat-row" }, stat(p.words_learned, S.learnedLabel), stat(p.minutes_today, S.minutesToday)),
-    h("div", { class: "cal" }, ...cells),
+    split([h("div", { class: "stat-row" }, stat(p.streak, S.streakLabel), stat(p.words_known, S.knownLabel)),
+           h("div", { class: "stat-row" }, stat(p.words_learned, S.learnedLabel), stat(p.minutes_today, S.minutesToday))],
+          [h("div", { class: "cal" }, ...cells)]),
     say({ icon: "💛", en: `This week you studied for ${p.minutes_week} minutes. Every day counts!`,
           am: `በዚህ ሳምንት ${p.minutes_week} ደቂቃ ተምረሻል። እያንዳንዱ ቀን ይቆጠራል!` }));
 }

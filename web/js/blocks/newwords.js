@@ -3,7 +3,7 @@
 import { api } from "../api.js";
 import { player } from "../audio.js";
 import { S } from "../strings.js";
-import { choose, flaggedPicture, germanWord, h, hint, nextButton, picture, say, screen, shuffle, steps } from "../ui.js";
+import { choose, flaggedPicture, germanWord, h, hint, nextButton, picture, say, screen, shuffle, split, steps } from "../ui.js";
 import { buildSentence } from "./wordorder.js";
 
 export async function run(root, block) {
@@ -15,13 +15,12 @@ export async function run(root, block) {
       w.plural ? h("div", { class: "muted", lang: "de" }, "➕ " + w.plural) : null,
       h("div", { class: "en" }, "🇬🇧 " + w.en, " ", hint(w.hint_am, w.id)),
       player(w.audio, { autoplay: true, compact: true }));
-    const parts = [steps(i + 1, words.length), say(S.newWord), card];
-    if (w.example) {
-      parts.push(h("div", { class: "phrase" }, h("div", { class: "de", lang: "de" }, w.example.de),
-        h("div", { class: "muted" }, w.example.en, " ", hint(w.example.hint_am, w.id + ":ex")),
-        player(w.example.audio, { compact: true })));
-    }
-    const box = screen(root, ...parts);
+    const example = w.example ? h("div", { class: "phrase" },
+      h("div", { class: "muted" }, "💬 Example"),
+      h("div", { class: "de", lang: "de" }, w.example.de),
+      h("div", { class: "muted" }, w.example.en, " ", hint(w.example.hint_am, w.id + ":ex")),
+      player(w.example.audio, { compact: true })) : null;
+    const box = screen(root, steps(i + 1, words.length), say(S.newWord), split(card, [example]));
     await nextButton(box);
   }
 
